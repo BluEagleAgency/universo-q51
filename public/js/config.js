@@ -1,0 +1,1 @@
+window.Q51_CONFIG=Object.freeze({eventAt:'2026-11-21T15:00:00-03:00',vipChannel:'',commission:null,manifesto:'https://drive.google.com/file/d/1TUnSxdIjACtQhnK99MU_UMvOltvF-hs7/preview',contact:'https://wa.me/5531983040444'});

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="coverBg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#191720"/>
+      <stop offset="50%" stop-color="#0E0D13"/>
+      <stop offset="100%" stop-color="#060508"/>
+    </linearGradient>
+    <linearGradient id="amberGold3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD166"/>
+      <stop offset="50%" stop-color="#F77F00"/>
+      <stop offset="100%" stop-color="#D62828"/>
+    </linearGradient>
+    <radialGradient id="nidesHalo" cx="50%" cy="40%" r="45%">
+      <stop offset="0%" stop-color="#4F1D2C" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#1A0E1A" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#060508" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="400" height="600" rx="12" fill="url(#coverBg3)"/>
+
+  <!-- Seal / Badge "Em Produção" -->
+  <g transform="translate(240, 25)">
+    <rect width="135" height="28" rx="14" fill="rgba(247, 127, 0, 0.15)" stroke="#F77F00" stroke-width="1"/>
+    <circle cx="16" cy="14" r="4" fill="#F77F00"/>
+    <text x="30" y="18" fill="#FFD166" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700" letter-spacing="1">EM PRODUÇÃO</text>
+  </g>
+
+  <!-- Hologram Grid -->
+  <g opacity="0.08" stroke="#FFFFFF" stroke-width="0.5">
+    <polygon points="200,120 320,300 200,420 80,300" fill="none"/>
+  </g>
+
+  <circle cx="200" cy="260" r="120" fill="url(#nidesHalo)"/>
+
+  <!-- Hourglass / Non-linear Time Fracture -->
+  <path d="M 140 180 L 260 180 L 200 260 L 260 340 L 140 340 L 200 260 Z" 
+        fill="none" stroke="url(#amberGold3)" stroke-width="1.8" opacity="0.8"/>
+  <circle cx="200" cy="260" r="8" fill="#FFD166"/>
+
+  <!-- Header -->
+  <text x="120" y="45" fill="rgba(255,255,255,0.4)" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="10" font-weight="600" letter-spacing="3">UNIVERSO Q51</text>
+
+  <!-- Title Block -->
+  <text x="200" y="420" fill="#FFFFFF" font-family="'Cinzel', Georgia, serif" font-size="28" font-weight="700" letter-spacing="3" text-anchor="middle">REGISTROS</text>
+  <text x="200" y="455" fill="url(#amberGold3)" font-family="'Cinzel', Georgia, serif" font-size="24" font-weight="600" letter-spacing="5" text-anchor="middle">DE NIDES</text>
+  
+  <text x="200" y="485" fill="#A09ABC" font-family="'Inter', sans-serif" font-size="10" letter-spacing="2" text-anchor="middle">A CONVERGÊNCIA DAS 5 CONSCIÊNCIAS</text>
+
+  <!-- Author Signature -->
+  <line x1="80" y1="520" x2="320" y2="520" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="200" y="555" fill="#E6EEF8" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="600" letter-spacing="3" text-anchor="middle">NOAH ARCO</text>
+</svg>

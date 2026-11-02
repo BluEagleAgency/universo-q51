@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Universo Q51 — Duas órbitas, uma convergência | EIDON V2.1</title>
+<meta content="Plataforma Integrada do Universo Q51. Órbitas da Terra e Nova Zaya, Obras Canônicas de Noah Arco e Encontro de Lançamento em 21/11 na Livraria Leitura Del Rey." name="description"/>
+<link href="assets/icon.svg" rel="icon" type="image/svg+xml"/>
+<link href="css/styles.css" rel="stylesheet"/>
+<link href="css/eidon.css" rel="stylesheet"/></head>
+<body>
+<!-- Fundo Cósmico com Estrelas Cadentes -->
+<canvas id="starfield-canvas"></canvas>
+<div class="app-wrapper">
+<!-- Top HUD (Barra de Navegação do App no Desktop) -->
+<header class="app-top-hud">
+<div class="container top-hud-container">
+<a class="app-brand" data-target-screen="screen-orbitas" href="#orbitas">
+<div class="brand-glyph">51</div>
+<div class="brand-titles">
+<span class="brand-main">UNIVERSO Q51</span>
+<span class="brand-sub">SISTEMA DE CONSCIÊNCIA</span>
+</div>
+</a>
+<!-- Abas Centrais de Navegação -->
+<nav>
+<ul class="app-nav-tabs">
+<li>
+<button class="nav-tab-btn active" data-target-screen="screen-orbitas">
+<span>🪐</span> Órbitas
+              </button>
+</li>
+<li>
+<button class="nav-tab-btn" data-target-screen="screen-obras">
+<span>📖</span> Obras
+              </button>
+</li>
+<li>
+<button class="nav-tab-btn" data-target-screen="screen-evento">
+<span>🏛️</span> Encontro 21/11
+              </button>
+</li>
+<li>
+<button class="nav-tab-btn" data-target-screen="screen-agentes">
+<span>🤖</span> Agente U51
+              </button>
+</li>
+</ul>
+</nav>
+<button class="nav-cta-mini" data-target-screen="screen-fundadores">
+          Ser Fundador ↗
+        </button>
+</div>
+</header>
+<!-- ÁREA PRINCIPAL DAS TELAS DO APLICATIVO -->
+<main class="container">
+<!-- ====================================================================
+           TELA 1: AS ÓRBITAS (TERRA TÁTICA & NOVA ZAYA EM ECLIPSE)
+           ==================================================================== -->
+<section class="app-screen active-screen" id="screen-orbitas"><div class="orbit-brief"><div class="orbit-kicker"><span class="status-dot"></span> UNIVERSO Q51 / NOAH ARCO <span class="version-mark">EIDON · V2.1</span></div><h1>Dois mundos. <br/><em>Uma convergência.</em></h1><p>Existe um momento em que tudo se conecta.</p><div class="orbit-actions"><button class="btn-app-primary" data-target-screen="screen-fundadores">Confirmar presença ↗</button><button class="explore-books" data-target-screen="screen-obras">Conhecer as obras ↗</button></div></div><div class="globe-viewport-wrapper"><div class="stage-coordinate top-left">SOL / SISTEMA DE CONEXÃO</div><div class="stage-coordinate top-right">TERRA × NOVA ZAYA</div><div id="globe-stage-container"></div><div id="globe-markers"></div><button class="zaya-selector" id="zaya-select">NOVA ZAYA <span>◉</span><small>SINAL EM ECLIPSE ↗</small></button><div aria-hidden="true" aria-label="Detalhes do setor" class="globe-detail-panel" hidden="" id="globe-detail-panel" inert="" role="region"><button aria-label="Fechar setor" class="globe-card-close-btn" id="globe-card-close">×</button><div id="globe-card-content"></div></div><div class="globe-instructions-overlay">Arraste para explorar · Selecione uma bandeira</div><button aria-pressed="false" id="globe-motion">Pausar órbitas</button><p id="globe-status" role="status"></p></div><div class="launch-strip"><div><small>O PRÓXIMO ENCONTRO É AQUI</small><b>21 NOV <span>2026 / 15H</span></b></div><div><b>Leitura Del Rey</b><span>2º andar · Belo Horizonte</span></div><div><b class="strip-price">2 livros · R$ 110</b><span>120 combos nos caixas da Leitura</span></div><button data-target-screen="screen-evento">Explorar o encontro ↗</button></div><div class="sector-heading"><p>DEZ SETORES. UM UNIVERSO EM EXPANSÃO.</p><span>SELECIONE SEU PONTO DE CONEXÃO</span></div><div aria-label="Países conectados" id="sector-list"></div></section>
+<!-- ====================================================================
+           TELA 2: OBRAS & MANIFESTO
+           ==================================================================== -->
+<section class="app-screen" id="screen-obras">
+<div class="text-center" style="margin-bottom: 2.5rem;">
+<span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--accent-cyan); text-transform: uppercase;">
+            O Cânone Literário
+          </span>
+<h2 style="font-family: var(--font-sync); font-size: clamp(2rem, 4.5vw, 3rem); margin-top: 0.5rem;">
+            As Obras do <span style="color: var(--accent-cyan);">Universo</span>
+</h2>
+<p style="max-width: 680px; margin: 1rem auto 0; color: var(--text-muted); font-size: 1.05rem;">
+            Uma saga existencial concebida para quem sente antes de entender e permanece depois da última página.
+          </p>
+</div>
+<div class="books-app-grid">
+<!-- Livro I -->
+<div class="book-app-card">
+<div class="book-cover-wrap">
+<img alt="Guardião do Vazio" loading="lazy" src="assets/vazio.webp"/>
+</div>
+<span style="font-family: var(--font-sync); font-size: 0.72rem; color: var(--accent-cyan); letter-spacing: 0.15em;">
+              LIVRO I • DISPONÍVEL
+            </span>
+<h3 style="font-size: 1.5rem; color: #FFFFFF; margin: 0.4rem 0;">Guardião do Vazio</h3>
+<p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">
+              O que você protege quando tudo desmorona? Memória, responsabilidade e o território das escolhas irreversíveis.
+            </p>
+<div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
+<span style="font-family: var(--font-sync); font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">R$ 65,90</span>
+<button class="nav-tab-btn" data-target-screen="screen-evento" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                Ver no Combo R$ 110 →
+              </button>
+</div>
+</div>
+<!-- Livro II -->
+<div class="book-app-card">
+<div class="book-cover-wrap">
+<img alt="A Arte do Silêncio" loading="lazy" src="assets/silencio.webp"/>
+</div>
+<span style="font-family: var(--font-sync); font-size: 0.72rem; color: var(--accent-purple); letter-spacing: 0.15em;">
+              LIVRO II • DISPONÍVEL
+            </span>
+<h3 style="font-size: 1.5rem; color: #FFFFFF; margin: 0.4rem 0;">A Arte do Silêncio</h3>
+<p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">
+              Sobre escuta e a remoção de limites. Aqui, o silêncio não é ausência; é a matriz onde as decisões amadurecem.
+            </p>
+<div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
+<span style="font-family: var(--font-sync); font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">R$ 65,90</span>
+<button class="nav-tab-btn" data-target-screen="screen-evento" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                Ver no Combo R$ 110 →
+              </button>
+</div>
+</div>
+<!-- Livro III -->
+<div class="book-app-card">
+<div class="book-cover-wrap">
+<img alt="Registros de Nides" loading="lazy" src="assets/book-nides.svg"/>
+</div>
+<span style="font-family: var(--font-sync); font-size: 0.72rem; color: var(--accent-gold); letter-spacing: 0.15em;">
+              EXPANSÃO • EM PRODUÇÃO
+            </span>
+<h3 style="font-size: 1.5rem; color: #FFFFFF; margin: 0.4rem 0;">Registros de Nides</h3>
+<p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">
+              A convergência das cinco consciências. Em fase de desenvolvimento editorial para 2027.
+            </p>
+<div style="border-top: 1px solid var(--border-glass); padding-top: 1rem; color: var(--accent-gold); font-size: 0.85rem; font-weight: 600;">
+              Sinais e Teasers em Breve
+            </div>
+</div>
+</div>
+<!-- Manifesto em Vídeo -->
+<div class="manifesto-app-box">
+<span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.25em; color: var(--accent-gold); text-transform: uppercase;">
+            O Manifesto de Noah Arco
+          </span>
+<blockquote style="font-size: 1.4rem; color: #FFFFFF; font-style: italic; margin: 1rem auto; max-width: 760px; line-height: 1.5;">
+            “O que acontece quando a consciência percebe que o tempo não é linear, e ainda assim precisa escolher?”
+          </blockquote>
+<div class="video-responsive-wrap">
+<button class="manifesto-play" id="manifesto-play">▷ Assistir ao manifesto oficial <span>NOAH ARCO / UNIVERSO Q51</span></button><div id="manifesto-host"></div>
+</div>
+</div>
+</section>
+<!-- ====================================================================
+           TELA 3: O ENCONTRO OFICIAL 21/11 & COMBO R$ 110
+           ==================================================================== -->
+<section class="app-screen" id="screen-evento">
+<div class="text-center" style="margin-bottom: 2rem;">
+<span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--accent-gold-light); text-transform: uppercase;">
+            Operação Presencial Leitura Del Rey
+          </span>
+<h2 style="font-family: var(--font-sync); font-size: clamp(2rem, 4.5vw, 3rem); margin-top: 0.5rem;">
+            O Encontro <span style="color: var(--accent-gold-light);">Oficial</span>
+</h2>
+<p style="color: var(--text-muted); font-size: 1.05rem;">
+            Sábado, 21 de Novembro de 2026 • Livraria Leitura, Shopping Del Rey (2º Andar), Belo Horizonte.
+          </p>
+</div>
+<div class="event-app-container">
+<!-- Detalhes e Rota -->
+<div class="event-details-card">
+<h3 style="font-family: var(--font-sync); font-size: 1.3rem; color: #FFFFFF; margin-bottom: 1.5rem;">
+              Coordenadas de Abertura
+            </h3>
+<div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
+<div>
+<strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">📍 Local</strong>
+<p style="color: #FFFFFF; font-size: 1rem;">Livraria Leitura — Shopping Del Rey (2º Andar / Mezanino)</p>
+<small style="color: var(--text-dim);">Av. Pres. Carlos Luz, 3001 - Caiçara, Belo Horizonte - MG</small>
+</div>
+<div>
+<strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">📅 Data e Horário</strong>
+<p style="color: #FFFFFF; font-size: 1rem;">Sábado, 21 de Novembro de 2026 • 15h00 às 20h00</p>
+</div>
+<div>
+<strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">🎟 Acesso</strong>
+<p style="color: #FFFFFF; font-size: 1rem;">Entrada Gratuita mediante credenciamento antecipado</p>
+</div>
+</div>
+<div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+<a class="nav-tab-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Livraria+Leitura+Shopping+Del+Rey+Belo+Horizonte" rel="noopener" style="border-color: var(--accent-cyan); color: var(--accent-cyan);" target="_blank">
+                🗺️ Traçar Rota no Google Maps ↗
+              </a>
+<button class="nav-tab-btn" id="download-ics-btn" style="border-color: var(--accent-gold); color: var(--accent-gold-light);">
+                📅 Adicionar à Agenda (.ics) ↓
+              </button>
+</div>
+<!-- As 5 Chaves Douradas -->
+<div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border-glass);">
+<span style="font-family: var(--font-sync); font-size: 0.72rem; color: var(--accent-gold-light); letter-spacing: 0.15em;">
+                O SEGREDO OCULTO NOS LIVROS
+              </span>
+<h4 style="font-family: var(--font-sync); font-size: 1.15rem; color: #FFFFFF; margin: 0.5rem 0;">
+                As 5 Chaves Douradas Q51
+              </h4>
+<p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+                Apenas 5 exemplares lacrados do evento guardam uma Chave Dourada com privilégios de Fundador Vitalício, exemplar numerado de colecionador, acesso antecipado ao Audiobook e encontro exclusivo com Noah Arco.
+              </p>
+</div>
+</div>
+<!-- Card do Combo Oficial -->
+<div class="combo-card-app">
+<span style="font-family: var(--font-sync); font-size: 0.72rem; letter-spacing: 0.15em; color: var(--accent-gold-light); text-transform: uppercase;">
+              OFERTA EXCLUSIVA DO EVENTO
+            </span>
+<h3 style="font-family: var(--font-sync); font-size: 1.6rem; color: #FFFFFF; margin: 0.5rem 0;">
+              Combo de Lançamento (2 Livros)
+            </h3>
+<p style="color: var(--text-muted); font-size: 0.92rem;">
+              Guardião do Vazio + A Arte do Silêncio nos caixas da Livraria Leitura.
+            </p>
+<div class="combo-price-big">R$ 110<small style="font-size: 1.5rem;">,00</small></div>
+<div style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 1.5rem;">
+              Valor unitário avulso: R$ 65,90 • Economia de R$ 21,80 no Combo
+            </div>
+<div style="background: rgba(2, 2, 5, 0.7); border: 1px dashed var(--accent-gold); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 2rem;">
+<strong style="color: var(--accent-gold-light); font-size: 0.82rem; font-family: var(--font-sync);">
+                ⚠️ LIMITE RIGOROSO DE ESTOQUE
+              </strong>
+<p style="font-size: 0.85rem; color: #FFFFFF; margin-top: 0.25rem;">
+                Apenas <strong>120 Combos</strong> disponíveis para aquisição na abertura do evento.
+              </p>
+</div>
+<button class="btn-app-primary" data-target-screen="screen-fundadores">
+              Solicitar Prioridade no Combo ↗
+            </button>
+</div>
+</div>
+</section>
+<!-- ====================================================================
+           TELA 4: TERMINAL AGENTE U51
+           ==================================================================== -->
+<section class="app-screen" id="screen-agentes">
+<div class="text-center" style="margin-bottom: 2rem;">
+<span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--accent-cyan); text-transform: uppercase;">
+            Expansão de Comunidade
+          </span>
+<h2 style="font-family: var(--font-sync); font-size: clamp(2rem, 4.5vw, 3rem); margin-top: 0.5rem;">
+            Terminal <span style="color: var(--accent-cyan);">Agente U51</span>
+</h2>
+<p style="color: var(--text-muted); font-size: 1.05rem;">
+            Para quem deseja levar o Universo Q51 às ruas de Belo Horizonte. Uma equipe de campo e embaixadores.
+          </p>
+</div>
+<div class="terminal-app-window">
+<div class="terminal-hud-bar">
+<div class="terminal-dots">
+<span class="terminal-dot-mini" style="background: #ff5f56;"></span>
+<span class="terminal-dot-mini" style="background: #ffbd2e;"></span>
+<span class="terminal-dot-mini" style="background: #27c93f;"></span>
+</div>
+<div style="font-size: 0.75rem; color: var(--text-dim); font-family: monospace;">
+              U51_RECRUITMENT_TERMINAL // BH-2026
+            </div>
+<div style="font-size: 0.75rem; color: var(--accent-cyan); font-family: monospace;">
+              ONLINE
+            </div>
+</div>
+<div style="padding: 2rem;">
+<div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem;">
+<div style="border-left: 2px solid var(--accent-cyan); padding-left: 1rem;">
+<strong style="color: #FFFFFF; font-size: 1.05rem;">01_ Comissão Direta por Combo</strong>
+<p style="font-size: 0.9rem; color: var(--text-muted);">
+                  Comissão por combo com venda confirmada. Valor e condições informados na seleção.
+                </p>
+</div>
+<div style="border-left: 2px solid var(--accent-purple); padding-left: 1rem;">
+<strong style="color: #FFFFFF; font-size: 1.05rem;">02_ Materiais Oficiais Prontos</strong>
+<p style="font-size: 0.9rem; color: var(--text-muted);">
+                  Acesso a criativos em alta resolução, teasers, vídeos e artes desenvolvidos pela BluEagle Agency.
+                </p>
+</div>
+<div style="border-left: 2px solid var(--accent-gold); padding-left: 1rem;">
+<strong style="color: #FFFFFF; font-size: 1.05rem;">03_ O Teste de 13 Dias</strong>
+<p style="font-size: 0.9rem; color: var(--text-muted);">
+                  Ciclo de alinhamento e consistência. A continuidade considera consistência, execução e postura profissional.
+                </p>
+</div>
+</div>
+<!-- Formulário de Candidatura -->
+<form data-kind="agent" style="border-top: 1px solid var(--border-glass); padding-top: 2rem;">
+<label class="field-label">Bairro / cidade<input class="form-input-app" maxlength="100" name="city" placeholder="Belo Horizonte / seu bairro" required=""/></label><h4 style="font-family: var(--font-sync); font-size: 1.1rem; color: #FFFFFF; margin-bottom: 1.25rem;">
+                Apresentar Candidatura para a Equipe
+              </h4>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+<input aria-label="Nome completo" class="form-input-app" maxlength="100" name="name" placeholder="Nome completo" required="" type="text"/>
+<input aria-label="E-mail" class="form-input-app" maxlength="180" name="email" placeholder="E-mail" required="" type="email"/>
+</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+<input aria-label="WhatsApp (com DDD)" class="form-input-app" maxlength="100" name="phone" placeholder="WhatsApp (com DDD)" required="" type="tel"/>
+<input aria-label="Instagram (@seuusuario)" class="form-input-app" maxlength="100" name="instagram" placeholder="Instagram (@seuusuario)" required="" type="text"/>
+</div>
+<div style="margin-bottom: 1.5rem;">
+<textarea aria-label="Como você pode movimentar o Q51?" class="form-input-app" maxlength="1200" name="motivation" placeholder="Como você pode movimentar o Universo Q51 em BH?" required="" rows="3" style="resize: vertical;"></textarea>
+</div>
+
+<label class="consent"><input name="consent" required="" type="checkbox"/>Autorizo o uso dos dados para este cadastro e li a <a href="#privacidade">política de privacidade</a>.</label><input aria-hidden="true" class="trap" maxlength="100" name="website" tabindex="-1"/><button class="btn-app-primary" style="background: linear-gradient(135deg, var(--accent-cyan) 0%, #0088cc 100%); color: #020205;" type="submit">
+                Enviar Candidatura de Agente ↗
+              </button><p class="form-status" role="status"></p></form>
+</div>
+</div>
+</section>
+<!-- ====================================================================
+           TELA 5: FUNDADORES (CREDENCIAMENTO & CONFIRMAÇÃO)
+           ==================================================================== -->
+<section class="app-screen" id="screen-fundadores">
+<div class="text-center" style="margin-bottom: 2rem;">
+<span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--accent-gold-light); text-transform: uppercase;">
+            Credenciamento Oficial de Presença
+          </span>
+<h2 style="font-family: var(--font-sync); font-size: clamp(2rem, 4.5vw, 3rem); margin-top: 0.5rem;">
+            Torne-se um <span style="color: var(--accent-gold-light);">Fundador</span>
+</h2>
+<p style="color: var(--text-muted); font-size: 1.05rem;">Seu nome no marco fundador do Universo Q51. Confirme sua presença gratuita no encontro.</p>
+</div>
+<div class="form-panel-app">
+<form data-kind="founder" id="founder-app-form">
+<div class="form-group-app">
+<label class="form-label-app">Nome Completo *</label>
+<input aria-label="Nome completo" class="form-input-app" id="founder-name" maxlength="100" name="name" placeholder="Como quer ser identificado no registro?" required="" type="text"/>
+</div>
+<div class="form-group-app">
+<label class="form-label-app">Seu Melhor E-mail *</label>
+<input aria-label="E-mail" class="form-input-app" id="founder-email" maxlength="180" name="email" placeholder="exemplo@dominio.com" required="" type="email"/>
+</div>
+<div class="form-group-app">
+<label class="form-label-app">WhatsApp com DDD *</label>
+<input aria-label="WhatsApp com DDD" class="form-input-app" id="founder-phone" maxlength="100" name="phone" placeholder="(31) 99999-9999" required="" type="tel"/>
+</div>
+<div class="form-group-app">
+<label class="form-label-app">Instagram (@usuario)</label>
+<input aria-label="Instagram" class="form-input-app" id="founder-insta" maxlength="100" name="instagram" placeholder="@seuusuario" required="" type="text"/>
+</div>
+<div style="margin: 1.5rem 0;">
+<label style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.85rem; color: #E2E8F0; cursor: pointer;">
+<input checked="" id="founder-combo" name="priority" style="margin-top: 0.2rem; accent-color: var(--accent-gold);" type="checkbox"/>
+<span>Desejo solicitar prioridade para o <strong>Combo de Lançamento (2 Livros por R$ 110,00)</strong> na Livraria Leitura Del Rey.</span>
+</label>
+</div>
+
+<label class="consent"><input name="updates" type="checkbox"/>Quero receber novidades do Q51.</label><label class="consent"><input name="consent" required="" type="checkbox"/>Autorizo o uso dos dados para este cadastro e li a <a href="#privacidade">política de privacidade</a>.</label><input aria-hidden="true" class="trap" maxlength="100" name="website" tabindex="-1"/><button class="btn-app-primary" type="submit">
+              Gerar Minha Credencial de Fundador 🜂
+            </button><p class="form-status" role="status"></p></form>
+</div>
+</section>
+</main>
+<!-- Bottom HUD (Menu Fixo de Aplicativo para Celulares) -->
+<nav class="mobile-bottom-hud">
+<div class="mobile-hud-grid">
+<button class="mobile-tab-btn active" data-target-screen="screen-orbitas">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><ellipse cx="12" cy="12" rx="9" ry="3"></ellipse></svg>
+<span>Órbitas</span>
+</button>
+<button class="mobile-tab-btn" data-target-screen="screen-obras">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+<span>Obras</span>
+</button>
+<button class="mobile-tab-btn" data-target-screen="screen-evento">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+<span>21/11</span>
+</button>
+<button class="mobile-tab-btn" data-target-screen="screen-agentes">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
+<span>Agentes</span>
+</button>
+<button class="mobile-tab-btn" data-target-screen="screen-fundadores">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+<span>Fundador</span>
+</button>
+</div>
+</nav>
+</div>
+<!-- Modal de Credencial Emitida -->
+<!-- Scripts -->
+<dialog aria-labelledby="credential-title" id="credential-dialog"><button aria-label="Fechar credencial" class="close">×</button><p class="eyebrow gold-text">TRANSMISSÃO CONFIRMADA</p><h2 id="credential-title">Você faz parte<br/>do começo.</h2><div class="credential-sample" id="credential-card"><span>UNIVERSO Q51 / MARCO FUNDADOR</span><div class="credential-mark">Q51</div><h3 id="credential-name"></h3><p id="credential-id"></p><small>21.11.2026 · 15H · LEITURA DEL REY</small></div><p id="priority-status"></p><div class="actions"><button class="button" id="download-credential">Baixar credencial ↓</button><a class="button gold" hidden="" id="vip" rel="noopener" target="_blank">Entrar no Canal Silencioso VIP ↗</a></div><p id="vip-status"></p></dialog><dialog aria-labelledby="radar-title" id="radar-dialog"><button aria-label="Fechar radar" class="dialog-close">×</button><p class="eyebrow">ARQUIVO 51 / PRÓXIMO RASTRO</p><h2 id="radar-title">Entre no radar.</h2><p>Acompanhe os próximos sinais em Belo Horizonte.</p><form data-kind="clue"><label class="field-label">WhatsApp com DDD<input autocomplete="tel" class="form-input-app" name="phone" placeholder="(31) 99999-9999" required="" type="tel"/></label><label class="consent"><input name="consent" required="" type="checkbox"/>Autorizo o uso dos dados para este cadastro e li a <a href="#privacidade">política de privacidade</a>.</label><input aria-hidden="true" class="trap" name="website" tabindex="-1"/><button class="btn-app-primary" type="submit">Cadastrar interesse ↗</button><p class="form-status" role="status"></p></form><small>Os avisos por WhatsApp serão ativados pelo projeto. Este cadastro registra seu interesse.</small></dialog><footer class="eid-footer"><span>Q51 / UM UNIVERSO DE NOAH ARCO</span><a href="https://www.instagram.com/universoq51/" rel="noopener" target="_blank">@universoq51 ↗</a><details id="privacidade"><summary>Privacidade e uso dos dados</summary><p>O projeto Universo Q51 usa os dados para a modalidade escolhida: presença, candidatura ou interesse nos rastros. Novidades gerais dependem de sua opção no formulário. Para acesso, correção ou exclusão, contate o projeto pelo atendimento oficial. Os dados ficam restritos à operação e aos serviços necessários ao cadastro. A operação revisará a retenção após o evento.</p><a href="https://wa.me/5531983040444" rel="noopener" target="_blank">Atendimento do projeto ↗</a></details><small>Credencial de presença. Estatuto Vitalício e benefícios especiais exclusivos das cinco Chaves Douradas.</small></footer><script src="js/config.js"></script><script src="js/locations.js"></script><script src="js/stars.js"></script><script src="js/three.min.js"></script><script src="js/land.js"></script><script src="js/globe.js"></script><script src="js/app.js"></script></body>
+</html>

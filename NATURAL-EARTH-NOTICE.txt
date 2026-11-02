@@ -1,0 +1,4 @@
+Earth texture derived from Natural Earth ne_110m_land, public domain.
+https://github.com/nvkelso/natural-earth-vector
+https://www.naturalearthdata.com/about/terms-of-use/
+Texture styled for Q51 by EIDON.

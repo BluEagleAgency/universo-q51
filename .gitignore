@@ -1,0 +1,7 @@
+.data/
+.env*
+!.env.example
+node_modules/
+dist/
+.vercel/
+.DS_Store

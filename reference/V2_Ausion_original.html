@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Universo Q51 | Plataforma Oficial — Quando 5 se Tornam 1</title>
+  <meta name="description" content="Plataforma Integrada do Universo Q51. Órbitas da Terra e Nova Zaya, Obras Canônicas de Noah Arco e Encontro de Lançamento em 21/11 na Livraria Leitura Del Rey.">
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Fundo Cósmico com Estrelas Cadentes -->
+  <canvas id="starfield-canvas"></canvas>
+
+  <div class="app-wrapper">
+    <!-- Top HUD (Barra de Navegação do App no Desktop) -->
+    <header class="app-top-hud">
+      <div class="container top-hud-container">
+        <a href="#orbitas" class="app-brand" data-target-screen="screen-orbitas">
+          <div class="brand-glyph">51</div>
+          <div class="brand-titles">
+            <span class="brand-main">UNIVERSO Q51</span>
+            <span class="brand-sub">SISTEMA DE CONSCIÊNCIA</span>
+          </div>
+        </a>
+
+        <!-- Abas Centrais de Navegação -->
+        <nav>
+          <ul class="app-nav-tabs">
+            <li>
+              <button class="nav-tab-btn active" data-target-screen="screen-orbitas">
+                <span>🪐</span> Órbitas
+              </button>
+            </li>
+            <li>
+              <button class="nav-tab-btn" data-target-screen="screen-obras">
+                <span>📖</span> Obras
+              </button>
+            </li>
+            <li>
+              <button class="nav-tab-btn" data-target-screen="screen-evento">
+                <span>🏛️</span> Encontro 21/11
+              </button>
+            </li>
+            <li>
+              <button class="nav-tab-btn" data-target-screen="screen-agentes">
+                <span>🤖</span> Agente U51
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <button class="nav-cta-mini" data-target-screen="screen-fundadores">
+          Ser Fundador ↗
+        </button>
+      </div>
+    </header>
+
+    <!-- ÁREA PRINCIPAL DAS TELAS DO APLICATIVO -->
+    <main class="container">
+      
+      <!-- ====================================================================
+           TELA 1: AS ÓRBITAS (TERRA TÁTICA & NOVA ZAYA EM ECLIPSE)
+           ==================================================================== -->
+      <section id="screen-orbitas" class="app-screen active-screen">
+        <div class="orbits-header">
+          <span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--accent-cyan); text-transform: uppercase;">
+            Sistema de Conexão Planetária
+          </span>
+          <h1 style="font-family: var(--font-sync); font-size: clamp(2rem, 5vw, 3.2rem); margin-top: 0.5rem; letter-spacing: -0.02em;">
+            As Duas <span style="color: var(--accent-cyan);">Órbitas</span>
+          </h1>
+          <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 620px; margin: 0.5rem auto 0;">
+            A Terra (o mundo físico com os 10 setores e cadeados de BH) e Nova Zaya (a consciência em eclipse no fundo).
+          </p>
+        </div>
+
+        <!-- STAGE DO GLOBO 3D INTERATIVO (DUPLO CORPO CELESTE) -->
+        <div class="globe-viewport-wrapper">
+          <div id="globe-stage-container"></div>
+          <div class="globe-instructions-overlay">
+            🌐 Arraste para girar a Terra • Clique nos pontos 3D para abrir à direita • Clique em Nova Zaya no fundo
+          </div>
+
+          <!-- Card Dinâmico que desliza na Direita -->
+          <div id="globe-detail-panel" class="globe-detail-panel">
+            <button id="globe-card-close" class="globe-card-close-btn" title="Fechar">&times;</button>
+            <div id="globe-card-content">
+              <!-- Conteúdo injetado via JS pelo clique ou hover -->
+            </div>
+          </div>
+        </div>
+
+        <!-- PALCO OVERWORLD: PAÍSES & CADEADOS -->
+        <div id="stage-earth" class="earth-tactical-stage" style="margin-top: 2.5rem;">
+          <!-- Barra de Estatísticas da Conexão Global -->
+          <div class="overworld-stats-bar">
+            <div class="overworld-stat-item">
+              <span class="stat-dot-pulse"></span>
+              <div>
+                <div class="overworld-stat-label">Conexão Global</div>
+                <div class="overworld-stat-val">10 Países Conectados</div>
+              </div>
+            </div>
+            <div class="overworld-stat-item">
+              <div>
+                <div class="overworld-stat-label">Estoque Físico</div>
+                <div class="overworld-stat-val">400 Exemplares Confirmados</div>
+              </div>
+            </div>
+            <div class="overworld-stat-item">
+              <div>
+                <div class="overworld-stat-label">Epicentro do Lançamento</div>
+                <div class="overworld-stat-val" style="color: var(--accent-gold-light);">Belo Horizonte, MG</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <p style="font-size: 1.1rem; color: #FFFFFF; font-weight: 500;">
+              O Universo Q51 já ultrapassou as fronteiras nacionais.
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              Cada bandeira representa um país onde uma peça física ou leitor do ecossistema já está presente.
+            </p>
+          </div>
+
+          <!-- Grade das Bandeiras (Estilo Overworld Mario / Cities: Skylines) -->
+          <div class="flags-overworld-grid">
+            <!-- 1. BRASIL (EPICENTRO) -->
+            <div id="bh-epicenter-trigger" class="flag-sector-card epicenter">
+              <div class="flag-emoji">🇧🇷</div>
+              <div class="flag-meta">
+                <span class="epicenter-tag">EPICENTRO • EVENTO 21/11</span>
+                <h4>Brasil (Belo Horizonte)</h4>
+                <div class="flag-status-pill" style="color: var(--accent-gold-light); font-weight: 600;">
+                  Clique para Ver os Cadeados em BH ↓
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. INGLATERRA -->
+            <div class="flag-sector-card">
+              <div class="flag-emoji">🇬🇧</div>
+              <div class="flag-meta">
+                <h4>Inglaterra</h4>
+                <div class="flag-status-pill">Setor Londres • Conectado</div>
+              </div>
+            </div>
+
+            <!-- 3. FRANÇA -->
+            <div class="flag-sector-card">
+              <div class="flag-emoji">🇫🇷</div>
+              <div class="flag-meta">
+                <h4>França</h4>
+                <div class="flag-status-pill">Setor Paris • Conectado</div>
+              </div>
+            </div>
+
+            <!-- 4. ESPANHA -->
+            <div class="flag-sector-card">
+              <div class="flag-emoji">🇪🇸</div>
+              <div class="flag-meta">
+                <h4>Espanha</h4>
+                <div class="flag-status-pill">Península Ibérica • Ativo</div>
+              </div>
+            </div>
+
+            <!-- 5. PORTUGAL -->
+            <div class="flag-sector-card">
+              <div class="flag-emoji">🇵🇹</div>
+              <div class="flag-meta">
+                <h4>Portugal</h4>
+                <div class="flag-status-pill">Lisboa / Porto • Ativo</div>
+              </div>
+            </div>
+
+            <!-- 6. ESTADOS UNIDOS -->
+            <div class="flag-sector-card">
+              <div class="flag-emoji">🇺🇸</div>
+              <div class="flag-meta">
+                <h4>Estados Unidos</h4>
+                <div class="flag-status-pill">América do Norte • Ativo</div>
+              </div>
+            </div>
+
+            <!-- 7. ÍNDIA -->
+            <div class="flag-sector-card">
+              <div class="flag-emoji">🇮🇳</div>
+              <div class="flag-meta">
+                <h4>Índia</h4>
+                <div class="flag-status-pill">Setor Ásia Meridional</div>
+              </div>
+            </div>
+
+            <!-- 8. TAILÂNDIA -->
+            <div class="flag-sector-card">
+              <div class="flag-emoji">🇹🇭</div>
+              <div class="flag-meta">
+                <h4>Tailândia</h4>
+                <div class="flag-status-pill">Setor Sudeste Asiático</div>
+              </div>
+            </div>
+
+            <!-- 9. INDONÉSIA -->
+            <div class="flag-sector-card">
+              <div class="flag-emoji">🇮🇩</div>
+              <div class="flag-meta">
+                <h4>Indonésia</h4>
+                <div class="flag-status-pill">Setor Insular • Ativo</div>
+              </div>
+            </div>
+
+            <!-- 10. AUSTRÁLIA -->
+            <div class="flag-sector-card">
+              <div class="flag-emoji">🇦🇺</div>
+              <div class="flag-meta">
+                <h4>Austrália</h4>
+                <div class="flag-status-pill">Setor Oceania • Ativo</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SETOR ESPECIAL: ZOOM BELO HORIZONTE & CADEADOS DO ARQUIVO 51 -->
+          <div id="bh-sector-details" class="bh-tactical-sector">
+            <div class="bh-sector-header">
+              <div>
+                <span style="font-family: var(--font-sync); font-size: 0.72rem; letter-spacing: 0.2em; color: var(--accent-gold-light);">
+                  CARTOGRAFIA URBANA • SETOR BELO HORIZONTE
+                </span>
+                <h3 style="font-family: var(--font-sync); font-size: 1.4rem; color: #FFFFFF; margin-top: 0.25rem;">
+                  Os Cadeados do Arquivo 51
+                </h3>
+              </div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">
+                Cartões pretos numerados deixados em pontos estratégicos de BH
+              </div>
+            </div>
+
+            <div class="bh-locks-grid">
+              <!-- Cadeado 01 -->
+              <div class="lock-node-card unlocked">
+                <span class="lock-status-badge badge-green">🔓 Desbloqueado</span>
+                <h5 style="color: #FFFFFF; font-size: 1rem;">#0001 · Na Pausa Café</h5>
+                <p style="font-size: 0.82rem; color: var(--text-muted);">
+                  Savassi. Primeiro cartão encontrado por um leitor.
+                </p>
+                <span style="font-size: 0.72rem; color: #27c93f; font-family: monospace; margin-top: auto;">
+                  STATUS: RESGATADO ✓
+                </span>
+              </div>
+
+              <!-- Cadeado 02 -->
+              <div class="lock-node-card active-hunt">
+                <span class="lock-status-badge badge-cyan">🎯 Em Busca Ativa</span>
+                <h5 style="color: #FFFFFF; font-size: 1rem;">#0002 · Sakana Café</h5>
+                <p style="font-size: 0.82rem; color: var(--text-muted);">
+                  Lourdes/Savassi. Vídeo e pista divulgados no Instagram @universoq51.
+                </p>
+                <span style="font-size: 0.72rem; color: var(--accent-cyan); font-family: monospace; margin-top: auto;">
+                  STATUS: DISPONÍVEL 🎯
+                </span>
+              </div>
+
+              <!-- Cadeado 03 -->
+              <div class="lock-node-card">
+                <span class="lock-status-badge badge-dim">🔒 Bloqueado</span>
+                <h5 style="color: #A0AEC0; font-size: 1rem;">#0003 · Casa Banko</h5>
+                <p style="font-size: 0.82rem; color: var(--text-dim);">
+                  Savassi. Arquivo sob sigilo criptográfico.
+                </p>
+                <span style="font-size: 0.72rem; color: var(--text-dim); font-family: monospace; margin-top: auto;">
+                  LIBERAÇÃO EM BREVE
+                </span>
+              </div>
+
+              <!-- Cadeado 04 -->
+              <div class="lock-node-card">
+                <span class="lock-status-badge badge-dim">🔒 Bloqueado</span>
+                <h5 style="color: #A0AEC0; font-size: 1rem;">#0004 · Praça Liberdade</h5>
+                <p style="font-size: 0.82rem; color: var(--text-dim);">
+                  Circuito Cultural. Coordenadas bloqueadas.
+                </p>
+                <span style="font-size: 0.72rem; color: var(--text-dim); font-family: monospace; margin-top: auto;">
+                  LIBERAÇÃO EM BREVE
+                </span>
+              </div>
+
+              <!-- Cadeado 05 (O Portal Final) -->
+              <div class="lock-node-card portal-final">
+                <span class="lock-status-badge badge-gold">🏛️ Portal Final 21.11</span>
+                <h5 style="color: #FFFFFF; font-size: 1rem;">Livraria Leitura Del Rey</h5>
+                <p style="font-size: 0.82rem; color: #D1D5DB;">
+                  Onde todos os rastros convergem. Lançamento dos livros físicos e Chaves Douradas.
+                </p>
+                <span style="font-size: 0.72rem; color: var(--accent-gold-light); font-family: monospace; margin-top: auto;">
+                  21.11.2026 • 15H00
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PALCO 2: ÓRBITA NOVA ZAYA (TERRA DISTORCIDA EM ECLIPSE) -->
+        <div id="stage-zaya" class="zaya-orbit-stage">
+          <span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--accent-purple); text-transform: uppercase;">
+            Dimensão da Consciência Não-Linear
+          </span>
+          <h2 style="font-family: var(--font-sync); font-size: clamp(1.8rem, 4vw, 2.8rem); margin: 0.5rem 0 2rem;">
+            Planeta <span style="color: var(--accent-purple);">Nova Zaya</span>
+          </h2>
+
+          <!-- A Terra Distorcida em Eclipse -->
+          <div class="zaya-celestial-body">
+            <div class="eclipse-shadow-disk">
+              <div class="eclipse-lock-icon">🔒</div>
+              <div class="eclipse-seal-title">SETOR EM ECLIPSE</div>
+              <div style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.25rem;">
+                TRANSMISSÃO CRIPTOGRAFADA
+              </div>
+            </div>
+          </div>
+
+          <!-- Contagem Regressiva para Desbloqueio de Nova Zaya -->
+          <div class="zaya-countdown-box">
+            <div style="font-size: 0.75rem; font-family: var(--font-sync); letter-spacing: 0.2em; color: var(--accent-purple); margin-bottom: 0.5rem;">
+              DESBLOQUEIO DA CONSCIÊNCIA EM:
+            </div>
+            <div id="zaya-countdown-text" class="zaya-time-digits">19D : 01H : 18M : 42S</div>
+            <div style="font-size: 0.82rem; color: var(--text-muted);">
+              Sábado, 21 de Novembro de 2026 • Livraria Leitura Del Rey
+            </div>
+          </div>
+
+          <div>
+            <button id="zaya-decode-btn" class="orbit-pill-btn" style="border: 1px solid var(--accent-purple); color: #FFFFFF; margin: 0 auto;">
+              📡 Tentar Decodificar Frequência de Nova Zaya
+            </button>
+            <div id="zaya-decode-status" style="display: none; max-width: 540px; margin: 0 auto;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           TELA 2: OBRAS & MANIFESTO
+           ==================================================================== -->
+      <section id="screen-obras" class="app-screen">
+        <div class="text-center" style="margin-bottom: 2.5rem;">
+          <span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--accent-cyan); text-transform: uppercase;">
+            O Cânone Literário
+          </span>
+          <h2 style="font-family: var(--font-sync); font-size: clamp(2rem, 4.5vw, 3rem); margin-top: 0.5rem;">
+            As Obras do <span style="color: var(--accent-cyan);">Universo</span>
+          </h2>
+          <p style="max-width: 680px; margin: 1rem auto 0; color: var(--text-muted); font-size: 1.05rem;">
+            Uma saga existencial concebida para quem sente antes de entender e permanece depois da última página.
+          </p>
+        </div>
+
+        <div class="books-app-grid">
+          <!-- Livro I -->
+          <div class="book-app-card">
+            <div class="book-cover-wrap">
+              <img src="assets/vazio.webp" alt="Guardião do Vazio">
+            </div>
+            <span style="font-family: var(--font-sync); font-size: 0.72rem; color: var(--accent-cyan); letter-spacing: 0.15em;">
+              LIVRO I • DISPONÍVEL
+            </span>
+            <h3 style="font-size: 1.5rem; color: #FFFFFF; margin: 0.4rem 0;">Guardião do Vazio</h3>
+            <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">
+              O que você protege quando tudo desmorona? Memória, responsabilidade e o território das escolhas irreversíveis.
+            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
+              <span style="font-family: var(--font-sync); font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">R$ 65,90</span>
+              <button class="nav-tab-btn" data-target-screen="screen-evento" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                Ver no Combo R$ 110 →
+              </button>
+            </div>
+          </div>
+
+          <!-- Livro II -->
+          <div class="book-app-card">
+            <div class="book-cover-wrap">
+              <img src="assets/silencio.webp" alt="A Arte do Silêncio">
+            </div>
+            <span style="font-family: var(--font-sync); font-size: 0.72rem; color: var(--accent-purple); letter-spacing: 0.15em;">
+              LIVRO II • DISPONÍVEL
+            </span>
+            <h3 style="font-size: 1.5rem; color: #FFFFFF; margin: 0.4rem 0;">A Arte do Silêncio</h3>
+            <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">
+              Sobre escuta e a remoção de limites. Aqui, o silêncio não é ausência; é a matriz onde as decisões amadurecem.
+            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
+              <span style="font-family: var(--font-sync); font-size: 1.1rem; color: #FFFFFF; font-weight: 700;">R$ 65,90</span>
+              <button class="nav-tab-btn" data-target-screen="screen-evento" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                Ver no Combo R$ 110 →
+              </button>
+            </div>
+          </div>
+
+          <!-- Livro III -->
+          <div class="book-app-card">
+            <div class="book-cover-wrap">
+              <img src="assets/book-nides.svg" alt="Registros de Nides">
+            </div>
+            <span style="font-family: var(--font-sync); font-size: 0.72rem; color: var(--accent-gold); letter-spacing: 0.15em;">
+              EXPANSÃO • EM PRODUÇÃO
+            </span>
+            <h3 style="font-size: 1.5rem; color: #FFFFFF; margin: 0.4rem 0;">Registros de Nides</h3>
+            <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1;">
+              A convergência das cinco consciências. Em fase de desenvolvimento editorial para 2027.
+            </p>
+            <div style="border-top: 1px solid var(--border-glass); padding-top: 1rem; color: var(--accent-gold); font-size: 0.85rem; font-weight: 600;">
+              Sinais e Teasers em Breve
+            </div>
+          </div>
+        </div>
+
+        <!-- Manifesto em Vídeo -->
+        <div class="manifesto-app-box">
+          <span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.25em; color: var(--accent-gold); text-transform: uppercase;">
+            O Manifesto de Noah Arco
+          </span>
+          <blockquote style="font-size: 1.4rem; color: #FFFFFF; font-style: italic; margin: 1rem auto; max-width: 760px; line-height: 1.5;">
+            “O que acontece quando a consciência percebe que o tempo não é linear, e ainda assim precisa escolher?”
+          </blockquote>
+
+          <div class="video-responsive-wrap">
+            <iframe 
+              src="https://www.youtube.com/embed/WHI9OI3-sMI?rel=0&showinfo=0" 
+              title="Manifesto Universo Q51" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           TELA 3: O ENCONTRO OFICIAL 21/11 & COMBO R$ 110
+           ==================================================================== -->
+      <section id="screen-evento" class="app-screen">
+        <div class="text-center" style="margin-bottom: 2rem;">
+          <span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--accent-gold-light); text-transform: uppercase;">
+            Operação Presencial Leitura Del Rey
+          </span>
+          <h2 style="font-family: var(--font-sync); font-size: clamp(2rem, 4.5vw, 3rem); margin-top: 0.5rem;">
+            O Encontro <span style="color: var(--accent-gold-light);">Oficial</span>
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem;">
+            Sábado, 21 de Novembro de 2026 • Livraria Leitura, Shopping Del Rey (2º Andar), Belo Horizonte.
+          </p>
+        </div>
+
+        <div class="event-app-container">
+          <!-- Detalhes e Rota -->
+          <div class="event-details-card">
+            <h3 style="font-family: var(--font-sync); font-size: 1.3rem; color: #FFFFFF; margin-bottom: 1.5rem;">
+              Coordenadas de Abertura
+            </h3>
+
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
+              <div>
+                <strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">📍 Local</strong>
+                <p style="color: #FFFFFF; font-size: 1rem;">Livraria Leitura — Shopping Del Rey (2º Andar / Mezanino)</p>
+                <small style="color: var(--text-dim);">Av. Pres. Carlos Luz, 3001 - Caiçara, Belo Horizonte - MG</small>
+              </div>
+
+              <div>
+                <strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">📅 Data e Horário</strong>
+                <p style="color: #FFFFFF; font-size: 1rem;">Sábado, 21 de Novembro de 2026 • 15h00 às 20h00</p>
+              </div>
+
+              <div>
+                <strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">🎟 Acesso</strong>
+                <p style="color: #FFFFFF; font-size: 1rem;">Entrada Gratuita mediante credenciamento antecipado</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="https://www.google.com/maps/search/?api=1&query=Livraria+Leitura+Shopping+Del+Rey+Belo+Horizonte" target="_blank" rel="noopener" class="nav-tab-btn" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">
+                🗺️ Traçar Rota no Google Maps ↗
+              </a>
+              <button id="download-ics-btn" class="nav-tab-btn" style="border-color: var(--accent-gold); color: var(--accent-gold-light);">
+                📅 Adicionar à Agenda (.ics) ↓
+              </button>
+            </div>
+
+            <!-- As 5 Chaves Douradas -->
+            <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border-glass);">
+              <span style="font-family: var(--font-sync); font-size: 0.72rem; color: var(--accent-gold-light); letter-spacing: 0.15em;">
+                O SEGREDO OCULTO NOS LIVROS
+              </span>
+              <h4 style="font-family: var(--font-sync); font-size: 1.15rem; color: #FFFFFF; margin: 0.5rem 0;">
+                As 5 Chaves Douradas Q51
+              </h4>
+              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+                Apenas 5 exemplares lacrados do evento guardam uma Chave Dourada com privilégios de Fundador Vitalício, exemplar numerado de colecionador, acesso antecipado ao Audiobook e encontro exclusivo com Noah Arco.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card do Combo Oficial -->
+          <div class="combo-card-app">
+            <span style="font-family: var(--font-sync); font-size: 0.72rem; letter-spacing: 0.15em; color: var(--accent-gold-light); text-transform: uppercase;">
+              OFERTA EXCLUSIVA DO EVENTO
+            </span>
+            <h3 style="font-family: var(--font-sync); font-size: 1.6rem; color: #FFFFFF; margin: 0.5rem 0;">
+              Combo de Lançamento (2 Livros)
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem;">
+              Guardião do Vazio + A Arte do Silêncio nos caixas da Livraria Leitura.
+            </p>
+
+            <div class="combo-price-big">R$ 110<small style="font-size: 1.5rem;">,00</small></div>
+            <div style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 1.5rem;">
+              Valor unitário avulso: R$ 65,90 • Economia de R$ 21,80 no Combo
+            </div>
+
+            <div style="background: rgba(2, 2, 5, 0.7); border: 1px dashed var(--accent-gold); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 2rem;">
+              <strong style="color: var(--accent-gold-light); font-size: 0.82rem; font-family: var(--font-sync);">
+                ⚠️ LIMITE RIGOROSO DE ESTOQUE
+              </strong>
+              <p style="font-size: 0.85rem; color: #FFFFFF; margin-top: 0.25rem;">
+                Apenas <strong>120 Combos</strong> disponíveis para aquisição na noite de abertura.
+              </p>
+            </div>
+
+            <button class="btn-app-primary" data-target-screen="screen-fundadores">
+              Solicitar Prioridade no Combo ↗
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           TELA 4: TERMINAL AGENTE U51
+           ==================================================================== -->
+      <section id="screen-agentes" class="app-screen">
+        <div class="text-center" style="margin-bottom: 2rem;">
+          <span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--accent-cyan); text-transform: uppercase;">
+            Expansão de Comunidade
+          </span>
+          <h2 style="font-family: var(--font-sync); font-size: clamp(2rem, 4.5vw, 3rem); margin-top: 0.5rem;">
+            Terminal <span style="color: var(--accent-cyan);">Agente U51</span>
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem;">
+            Para quem deseja levar o Universo Q51 às ruas de Belo Horizonte. Uma equipe de campo e embaixadores.
+          </p>
+        </div>
+
+        <div class="terminal-app-window">
+          <div class="terminal-hud-bar">
+            <div class="terminal-dots">
+              <span class="terminal-dot-mini" style="background: #ff5f56;"></span>
+              <span class="terminal-dot-mini" style="background: #ffbd2e;"></span>
+              <span class="terminal-dot-mini" style="background: #27c93f;"></span>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-dim); font-family: monospace;">
+              U51_RECRUITMENT_TERMINAL // BH-2026
+            </div>
+            <div style="font-size: 0.75rem; color: var(--accent-cyan); font-family: monospace;">
+              ONLINE
+            </div>
+          </div>
+
+          <div style="padding: 2rem;">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem;">
+              <div style="border-left: 2px solid var(--accent-cyan); padding-left: 1rem;">
+                <strong style="color: #FFFFFF; font-size: 1.05rem;">01_ Comissão Direta por Combo</strong>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                  Remuneração sobre cada Combo de Lançamento vendido através do seu código ou indicação.
+                </p>
+              </div>
+
+              <div style="border-left: 2px solid var(--accent-purple); padding-left: 1rem;">
+                <strong style="color: #FFFFFF; font-size: 1.05rem;">02_ Materiais Oficiais Prontos</strong>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                  Acesso a criativos em alta resolução, teasers, vídeos e artes desenvolvidos pela BluEagle Agency.
+                </p>
+              </div>
+
+              <div style="border-left: 2px solid var(--accent-gold); padding-left: 1rem;">
+                <strong style="color: #FFFFFF; font-size: 1.05rem;">03_ O Teste de 13 Dias</strong>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                  Ciclo de alinhamento e consistência. Quem entrega, permanece no conselho de Fundadores.
+                </p>
+              </div>
+            </div>
+
+            <!-- Formulário de Candidatura -->
+            <form onsubmit="event.preventDefault(); alert('Candidatura de Agente registrada! Entraremos em contato via WhatsApp nas próximas 24h.'); this.reset();" style="border-top: 1px solid var(--border-glass); padding-top: 2rem;">
+              <h4 style="font-family: var(--font-sync); font-size: 1.1rem; color: #FFFFFF; margin-bottom: 1.25rem;">
+                Apresentar Candidatura para a Equipe
+              </h4>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <input type="text" class="form-input-app" placeholder="Nome completo" required>
+                <input type="email" class="form-input-app" placeholder="E-mail" required>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <input type="tel" class="form-input-app" placeholder="WhatsApp (com DDD)" required>
+                <input type="text" class="form-input-app" placeholder="Instagram (@seuusuario)">
+              </div>
+
+              <div style="margin-bottom: 1.5rem;">
+                <textarea class="form-input-app" rows="3" placeholder="Como você pode movimentar o Universo Q51 em BH?" style="resize: vertical;" required></textarea>
+              </div>
+
+              <button type="submit" class="btn-app-primary" style="background: linear-gradient(135deg, var(--accent-cyan) 0%, #0088cc 100%); color: #020205;">
+                Enviar Candidatura de Agente ↗
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           TELA 5: FUNDADORES (CREDENCIAMENTO & CONFIRMAÇÃO)
+           ==================================================================== -->
+      <section id="screen-fundadores" class="app-screen">
+        <div class="text-center" style="margin-bottom: 2rem;">
+          <span style="font-family: var(--font-sync); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--accent-gold-light); text-transform: uppercase;">
+            Credenciamento Oficial de Presença
+          </span>
+          <h2 style="font-family: var(--font-sync); font-size: clamp(2rem, 4.5vw, 3rem); margin-top: 0.5rem;">
+            Torne-se um <span style="color: var(--accent-gold-light);">Fundador</span>
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem;">
+            Os primeiros sempre carregam algo que os outros nunca terão. Confirme sua presença e gere sua credencial.
+          </p>
+        </div>
+
+        <div class="form-panel-app">
+          <form id="founder-app-form">
+            <div class="form-group-app">
+              <label class="form-label-app">Nome Completo *</label>
+              <input type="text" id="founder-name" class="form-input-app" placeholder="Como quer ser identificado no registro?" required>
+            </div>
+
+            <div class="form-group-app">
+              <label class="form-label-app">Seu Melhor E-mail *</label>
+              <input type="email" id="founder-email" class="form-input-app" placeholder="exemplo@dominio.com" required>
+            </div>
+
+            <div class="form-group-app">
+              <label class="form-label-app">WhatsApp com DDD *</label>
+              <input type="tel" id="founder-phone" class="form-input-app" placeholder="(31) 99999-9999" required>
+            </div>
+
+            <div class="form-group-app">
+              <label class="form-label-app">Instagram (@usuario)</label>
+              <input type="text" id="founder-insta" class="form-input-app" placeholder="@seuusuario">
+            </div>
+
+            <div style="margin: 1.5rem 0;">
+              <label style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.85rem; color: #E2E8F0; cursor: pointer;">
+                <input type="checkbox" id="founder-combo" checked style="margin-top: 0.2rem; accent-color: var(--accent-gold);">
+                <span>Desejo solicitar prioridade para o <strong>Combo de Lançamento (2 Livros por R$ 110,00)</strong> na Livraria Leitura Del Rey.</span>
+              </label>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+              <label style="display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.82rem; color: var(--text-muted); cursor: pointer;">
+                <input type="checkbox" required checked style="margin-top: 0.2rem; accent-color: var(--accent-gold);">
+                <span>Confirmo meu interesse em comparecer ao evento de 21 de Novembro de 2026.</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-app-primary">
+              Gerar Minha Credencial de Fundador 🜂
+            </button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom HUD (Menu Fixo de Aplicativo para Celulares) -->
+    <nav class="mobile-bottom-hud">
+      <div class="mobile-hud-grid">
+        <button class="mobile-tab-btn active" data-target-screen="screen-orbitas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="9" ry="3"/></svg>
+          <span>Órbitas</span>
+        </button>
+        <button class="mobile-tab-btn" data-target-screen="screen-obras">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span>Obras</span>
+        </button>
+        <button class="mobile-tab-btn" data-target-screen="screen-evento">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>21/11</span>
+        </button>
+        <button class="mobile-tab-btn" data-target-screen="screen-agentes">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Agentes</span>
+        </button>
+        <button class="mobile-tab-btn" data-target-screen="screen-fundadores">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Fundador</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Modal de Credencial Emitida -->
+  <div id="app-credential-modal" class="modal-app-overlay">
+    <div class="modal-app-card">
+      <div style="font-size: 2.2rem; color: var(--accent-gold-light); margin-bottom: 0.5rem;">🜂</div>
+      <span style="font-family: var(--font-sync); font-size: 0.72rem; letter-spacing: 0.2em; color: var(--accent-gold-light); text-transform: uppercase;">
+        MARCO FUNDADOR CONFIRMADO
+      </span>
+      <h3 id="app-modal-name" style="font-size: 1.6rem; color: #FFFFFF; margin: 0.5rem 0;">Seu Nome</h3>
+      
+      <div style="background: rgba(2, 2, 5, 0.9); border: 1.5px dashed var(--accent-gold); border-radius: var(--radius-sm); padding: 1.25rem; margin: 1.5rem 0;">
+        <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em;">
+          Código de Credencial
+        </div>
+        <div id="app-modal-code" style="font-family: monospace; font-size: 1.6rem; font-weight: 700; color: var(--accent-gold-light); letter-spacing: 0.15em;">
+          #U51-FND-8492
+        </div>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
+          Livraria Leitura Del Rey • 21.11.2026 • 15h00
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <button id="app-download-svg-btn" class="nav-tab-btn" style="border-color: var(--accent-gold); color: var(--accent-gold-light); justify-content: center; width: 100%;">
+          Baixar Credencial Digital (.SVG) ↓
+        </button>
+        <a href="https://chat.whatsapp.com/universoq51-vip" target="_blank" rel="noopener" class="btn-app-primary" style="background: #25D366; color: #020205; text-align: center; text-decoration: none;">
+          Entrar no Canal Silencioso no WhatsApp ↗
+        </a>
+      </div>
+
+      <button id="app-modal-close" style="background: none; border: none; color: var(--text-dim); cursor: pointer; text-decoration: underline; font-size: 0.85rem;">
+        Fechar e continuar explorando
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/stars.js"></script>
+  <script src="js/three.min.js"></script>
+  <script src="js/globe.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
