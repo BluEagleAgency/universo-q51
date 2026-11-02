@@ -7,6 +7,7 @@
 <title>Universo Q51 — Duas órbitas, uma convergência | EIDON V2.1</title>
 <meta content="Plataforma Integrada do Universo Q51. Órbitas da Terra e Nova Zaya, Obras Canônicas de Noah Arco e Encontro de Lançamento em 21/11 na Livraria Leitura Del Rey." name="description"/>
 <link href="assets/icon.svg" rel="icon" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet"/>
 <link href="css/eidon.css" rel="stylesheet"/>
 <link href="css/funnel.css" rel="stylesheet"/></head>
@@ -29,37 +30,38 @@
 <ul class="app-nav-tabs">
 <li>
 <button class="nav-tab-btn active" data-target-screen="screen-passe">
-<span>🗝️</span> Passe Fundador
+Passe Fundador
               </button>
 </li>
 <li>
 <button class="nav-tab-btn" data-target-screen="screen-orbitas">
-<span>🪐</span> Órbitas
+Órbitas
               </button>
 </li>
 <li>
 <button class="nav-tab-btn" data-target-screen="screen-obras">
-<span>📖</span> Obras
+Obras
               </button>
 </li>
 <li>
 <button class="nav-tab-btn" data-target-screen="screen-evento">
-<span>🏛️</span> Encontro 21/11
+Encontro 21/11
               </button>
 </li>
 <li>
 <button class="nav-tab-btn" data-target-screen="screen-agentes">
-<span>🤖</span> Agente U51
+Agente U51
               </button>
 </li>
 </ul>
 </nav>
 <div style="display: flex; align-items: center; gap: 8px;">
 <button class="nav-cart-btn open-cart-trigger" aria-label="Abrir carrinho">
-<span>🛒</span> <span class="cart-pill-count">1</span> <span class="cart-pill-price">R$ 110</span>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+<span>Carrinho</span> <span class="cart-pill-count" data-count="0">0</span>
 </button>
-<button class="express-buy-btn open-cart-trigger">
-⚡ 1 Clique: R$ 110
+<button class="express-buy-btn trigger-add-pass">
+Passe Fundador · R$ 110
 </button>
 </div>
 </div>
@@ -69,305 +71,154 @@
 <!-- ====================================================================
            TELA 0: O RITUAL DA CHAVE & PASSE DE FUNDADOR (ALTA CONVERSÃO)
            ==================================================================== -->
+<!-- ====================================================================
+           TELA 0: O RITUAL DA CHAVE & PASSE FUNDADOR (V2.2 AUDITORIA)
+           ==================================================================== -->
 <section class="app-screen active-screen" id="screen-passe">
-  <!-- 1. O RITUAL DO CARTÃO PRETO (ESBOÇO 1) -->
+  <!-- 1. ETAPA DA CHAVE -->
   <div class="ritual-hero-section">
-    <div id="lootbox-shockwave" class="lootbox-shockwave"></div>
-
-    <!-- Etapa 1.1: Chave Inicial -->
-    <div id="stage-initial-key" class="ritual-step-box step-fade">
-      <div class="ritual-kicker">
-        <span class="status-dot"></span> RASTRO DE ANOMALIA // ACESSO AO Q51
-      </div>
-      <h1 class="sales-headline-master">
-        ESSA É SUA <br/><em>CHAVE DE ACESSO</em>
-      </h1>
-      <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 540px; margin: 0 auto 15px;">
-        Você não encontrou este rastro por acaso. O rastro achou você.
-      </p>
+    <div id="stage-initial-key" class="ritual-step-box">
+      <div class="ritual-kicker-clean">UNIVERSO Q51 · ACESSO</div>
+      <h1 class="ritual-title-clean">Você encontrou a chave.</h1>
       
-      <div class="ritual-code-badge">0xQ51-ORIGIN-ZAYA</div>
-
-      <div class="security-warning-card">
-        <span>🔒</span>
-        <div>
-          <strong>GUARDE COM SEGURANÇA.</strong>
-          <small style="display: block; color: var(--text-dim); margin-top: 2px;">Assinatura única por dispositivo. Validação em tempo real.</small>
-        </div>
-      </div>
-
-      <!-- Botão da Chave [ 🔑 ] com Partículas Orbitais -->
       <div class="key-activation-stage">
         <div id="ritual-particles-host" class="particles-host"></div>
-        <button id="ritual-activate-key" class="ritual-key-btn" aria-label="Ativar Chave de Acesso">
-          <span>🗝️</span>
+        <button id="ritual-activate-key" class="btn-activate-key" aria-label="Ativar chave">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+          <span class="btn-activate-label">Ativar chave</span>
         </button>
-      </div>
-      <div class="key-click-callout">
-        ▲ Clique na chave para sintetizar seu fragmento ▲
       </div>
     </div>
 
-    <!-- Etapa 1.2: Fragmento Desbloqueado (Loot Box Effect) -->
+    <!-- 2. ETAPA DA RECOMPENSA (O FRAGMENTO) -->
     <div id="stage-reward-unlocked" class="reward-unlocked-card" hidden>
-      <span class="reward-badge-tag">✓ FRAGMENTO 01 SINTETIZADO</span>
-      <h2 style="font-family: 'Syncopate', sans-serif; font-size: 1.6rem; color: #FFF; margin: 10px 0;">
-        Parabéns! Você Desbloqueou o <em style="color: var(--accent-gold-light); font-style: normal;">Fragmento 01</em>
-      </h2>
-      <p style="color: #CBD5E1; font-size: 0.95rem; line-height: 1.6;">
-        Você acessou o rastro confidencial da gênese de Nova Zaya e a conexão direta com o cânone de Noah Arco.
-      </p>
+      <div class="ritual-kicker-clean">FRAGMENTO DESBLOQUEADO</div>
+      <h2>O fragmento é seu.</h2>
+      <p>Áudio-registro 01 · Nova Zaya</p>
 
-      <div class="fragment-audio-preview">
-        <div class="play-mini-btn">▶</div>
-        <div>
-          <strong style="color: #FFF; font-size: 0.9rem; display: block;">Áudio-Registro Confidencial #01</strong>
-          <small style="color: var(--accent-cyan); font-family: monospace;">Duração: 01:24 · Frequência 432Hz</small>
+      <div class="audio-player-box">
+        <div class="audio-player-info">
+          <span class="audio-track-title">Registro Confidencial #01 (432Hz)</span>
+          <span class="audio-track-time" id="audio-time-display">Duração: 01:24</span>
         </div>
+        <button id="btn-play-audio" class="btn-audio-control">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span>Ouvir fragmento</span>
+        </button>
       </div>
 
-      <form id="reward-collect-form" class="reward-form">
-        <input type="email" name="reward_email" placeholder="Digite seu melhor e-mail para coletar" required>
-        <input type="tel" name="reward_phone" placeholder="WhatsApp com DDD (para envio da chave)" required>
-        <button type="submit" class="reward-collect-btn">
-          COLETAR MEU PRÊMIO E AVANÇAR ➔
-        </button>
-      </form>
-
-      <a id="skip-to-fundador" class="skip-step-link">
-        Avançar direto para a apresentação do acervo ➔
+      <a href="#fundador-acervo" id="btn-goto-passe" class="btn-proceed-pass">
+        Conhecer o passe ➔
       </a>
+
+      <details style="margin-top: 20px;">
+        <summary style="font-size: 13px; color: var(--color-text-sub); cursor: pointer;">Receber aviso por WhatsApp (opcional)</summary>
+        <form style="margin-top: 10px; display: flex; gap: 8px;">
+          <input type="tel" placeholder="WhatsApp com DDD" class="form-input-app" style="flex: 1; background: #0A0A0A; border: 1px solid var(--color-border-subtle); color: #FFF; padding: 10px;">
+          <button type="button" class="btn-proceed-pass" style="width: auto; padding: 10px 16px; margin: 0;">Salvar</button>
+        </form>
+      </details>
     </div>
   </div>
 
-  <!-- 2. A APRESENTAÇÃO DO PASSE FUNDADOR (ESBOÇO 2 & BUY BOX) -->
-  <div id="fundador-sales-stage" class="fundador-sales-stage">
-    <div class="container text-center">
-      
-      <div class="collected-success-banner">
-        <span>✨</span> Fragmento 01 Ativo no Seu Terminal. O Universo Completo está no Passe Fundador.
-      </div>
+  <!-- 3. ETAPA DO ACERVO -->
+  <div id="fundador-acervo" class="sales-acervo-section">
+    <div class="sales-acervo-header">
+      <div class="ritual-kicker-clean">EDIÇÃO ESPECIAL DE LANÇAMENTO</div>
+      <h2>Passe Fundador</h2>
+      <p>Os dois livros canônicos autografados, acesso antecipado digital e o acervo completo da obra.</p>
+    </div>
 
-      <p class="eyebrow" style="letter-spacing: 4px; color: var(--accent-gold);">MARCO FUNDADOR // LIVRARIA LEITURA DEL REY — 21 NOV 2026</p>
-      <h2 class="sales-headline-master">
-        O ACERVO COMPLETO NO <br/><em>PASSE DE FUNDADOR</em>
-      </h2>
-      <p style="max-width: 720px; margin: 0 auto 35px; color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">
-        Uma imersão definitiva limitada a exatamente <strong>120 passes presenciais</strong>. Você garante os dois livros canônicos autografados por Noah Arco, o acervo digital completo e duas chances reais de resgatar o exemplar com o Cartão Dourado.
-      </p>
-
-      <!-- Grid dos Livros & Acervo com Efeito 3D Tilt -->
-      <div class="books-tilt-grid">
-        <!-- Livro I -->
-        <div class="tilt-card-wrap">
-          <div class="tilt-card-inner">
-            <div style="height: 280px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-              <img src="assets/vazio.webp" alt="Guardião do Vazio" style="max-height: 100%; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
-            </div>
-            <span style="font-family: 'Space Grotesk', monospace; font-size: 10px; color: var(--accent-cyan); letter-spacing: 2px;">LIVRO I · CANÔNICO DISPONÍVEL</span>
-            <h3 style="color: #FFF; font-size: 1.4rem; margin: 8px 0 4px;">Guardião do Vazio</h3>
-            <p style="color: var(--text-dim); font-size: 0.88rem; line-height: 1.5; margin-bottom: 15px;">
-              A fissura existencial em Belo Horizonte e o despertar da primeira consciência. 320 páginas em capa especial.
-            </p>
-            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: var(--accent-gold-light);">
-              Preço avulso: R$ 65,90 · <strong>Incluso no Passe</strong>
-            </div>
-          </div>
+    <div class="acervo-books-list">
+      <!-- Livro I -->
+      <div class="acervo-book-row">
+        <div class="acervo-book-thumb-wrap">
+          <img src="assets/vazio.webp" alt="Guardião do Vazio" class="acervo-book-thumb" loading="lazy">
         </div>
-
-        <!-- Livro II -->
-        <div class="tilt-card-wrap">
-          <div class="tilt-card-inner">
-            <div style="height: 280px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-              <img src="assets/silencio.webp" alt="A Arte do Silêncio" style="max-height: 100%; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
-            </div>
-            <span style="font-family: 'Space Grotesk', monospace; font-size: 10px; color: var(--accent-cyan); letter-spacing: 2px;">LIVRO II · CANÔNICO DISPONÍVEL</span>
-            <h3 style="color: #FFF; font-size: 1.4rem; margin: 8px 0 4px;">A Arte do Silêncio</h3>
-            <p style="color: var(--text-dim); font-size: 0.88rem; line-height: 1.5; margin-bottom: 15px;">
-              A travessia por Londres, o silêncio como arma e o limiar antes da convergência. 296 páginas.
-            </p>
-            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: var(--accent-gold-light);">
-              Preço avulso: R$ 65,90 · <strong>Incluso no Passe</strong>
-            </div>
-          </div>
-        </div>
-
-        <!-- Livro III: Minimalista sem mockups -->
-        <div class="tilt-card-wrap">
-          <div class="tilt-card-inner">
-            <div style="height: 280px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-              <img src="assets/book-nides.svg" alt="Registros de Nides" style="max-height: 100%; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
-            </div>
-            <span style="font-family: 'Space Grotesk', monospace; font-size: 10px; color: var(--accent-gold); letter-spacing: 2px;">LIVRO III · EM CONSTRUÇÃO</span>
-            <h3 style="color: #FFF; font-size: 1.4rem; margin: 8px 0 4px;">Registros de Nides</h3>
-            <p style="color: var(--text-dim); font-size: 0.88rem; line-height: 1.5; margin-bottom: 15px;">
-              A convergência das cinco mentes que formam a Quintessência. Arquivo reservado em desenvolvimento.
-            </p>
-            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: var(--accent-gold-light);">
-              Acesso Antecipado 2027 · <strong>Incluso no Passe</strong>
-            </div>
-          </div>
-        </div>
-
-        <!-- Acervo Digital -->
-        <div class="tilt-card-wrap">
-          <div class="tilt-card-inner" style="background: radial-gradient(circle at 50% 0%, rgba(0,242,255,0.06), rgba(15,23,42,0.8));">
-            <div style="height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px dashed rgba(0,242,255,0.3); border-radius: 6px; padding: 20px; text-align: center;">
-              <span style="font-size: 48px; margin-bottom: 10px;">💾</span>
-              <strong style="color: #FFF; font-family: 'Syncopate', sans-serif; font-size: 13px; letter-spacing: 2px;">ACERVO DIGITAL SECRETO</strong>
-              <small style="color: var(--accent-cyan); margin-top: 8px; font-family: monospace;">VALOR REAL ESTIMADO: R$ 150,00+</small>
-            </div>
-            <span style="font-family: 'Space Grotesk', monospace; font-size: 10px; color: var(--accent-cyan); letter-spacing: 2px; margin-top: 20px; display: block;">DIGITAL EXCLUSIVO</span>
-            <h3 style="color: #FFF; font-size: 1.4rem; margin: 8px 0 4px;">Arquivo 51 Expandido</h3>
-            <p style="color: var(--text-dim); font-size: 0.88rem; line-height: 1.5; margin-bottom: 15px;">
-              Manuscritos originais, partituras sonoras orquestrais, mapas estelares de Nova Zaya e áudios de bastidores.
-            </p>
-            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: var(--accent-gold-light);">
-              Valor R$ 150,00 · <strong>Incluso no Passe</strong>
-            </div>
-          </div>
+        <div class="acervo-book-content">
+          <div class="acervo-book-title">Guardião do Vazio</div>
+          <div class="acervo-book-price-line">Livro físico I · <span class="price-tag-single">Avulso R$ 65,90</span></div>
         </div>
       </div>
 
-      <!-- O CLÍMAX DE CONVERSÃO: O CARTÃO DOURADO -->
-      <div class="golden-climax-card">
-        <span class="golden-hero-tag">🗝️ O MISTÉRIO DAS CHAVES DOURADAS</span>
-        
-        <h3 class="two-chances-headline">
-          NA COMPRA DO ACERVO VOCÊ GARANTE <br/>
-          <span>DUAS CHANCES DE RESGATAR</span> UM LIVRO COM O CARTÃO DOURADO
-        </h3>
-        
-        <p style="max-width: 680px; margin: 0 auto; color: #CBD5E1; font-size: 1.05rem; line-height: 1.6;">
-          Foram inseridos exatamente <strong>5 Cartões Dourados</strong> nos 120 combos exclusivos do encontro presencial. Ao adquirir o Passe Fundador, você recebe duas chances legítimas de abrir um exemplar premiado.
-        </p>
-
-        <!-- Cartão Dourado 3D Interativo Clicável -->
-        <div id="golden-card-trigger" class="golden-card-display" role="button" tabindex="0" aria-label="Inspecionar prêmios do Cartão Dourado">
-          <div id="golden-card-3d">
-            <img src="assets/gold-card.svg" alt="Cartão Dourado Q51" style="width: 100%; border-radius: 12px; box-shadow: 0 15px 45px rgba(0,0,0,0.9);">
-          </div>
-          <div class="click-inspect-badge">
-            🔍 CLIQUE NO CARTÃO DOURADO PARA VER OS 4 PRÊMIOS LENDÁRIOS ↗
-          </div>
+      <!-- Livro II -->
+      <div class="acervo-book-row">
+        <div class="acervo-book-thumb-wrap">
+          <img src="assets/silencio.webp" alt="A Arte do Silêncio" class="acervo-book-thumb" loading="lazy">
         </div>
-
-        <div class="fundador-perks-list">
-          <div class="perk-item">
-            <span class="perk-check">✓</span>
-            <div>
-              <strong>Exemplar Ouro nº 1</strong>
-              Cópia numerada com gravação manual de Noah Arco.
-            </div>
-          </div>
-          <div class="perk-item">
-            <span class="perk-check">✓</span>
-            <div>
-              <strong>Estatuto Vitalício</strong>
-              Acesso permanente aos próximos lançamentos do universo.
-            </div>
-          </div>
-          <div class="perk-item">
-            <span class="perk-check">✓</span>
-            <div>
-              <strong>Acesso Alfa AudioDrama</strong>
-              Prévia confidencial da experiência sonora imersiva.
-            </div>
-          </div>
-          <div class="perk-item">
-            <span class="perk-check">✓</span>
-            <div>
-              <strong>Mesa Secreta</strong>
-              Convite presencial para encontro reservado com o autor.
-            </div>
-          </div>
+        <div class="acervo-book-content">
+          <div class="acervo-book-title">A Arte do Silêncio</div>
+          <div class="acervo-book-price-line">Livro físico II · <span class="price-tag-single">Avulso R$ 65,90</span></div>
         </div>
       </div>
 
-      <!-- THE BUY BOX (AMAZON / MERCADO LIVRE STYLE) -->
-      <div class="buybox-section">
-        <div class="buybox-card">
-          <div class="buybox-urgency-header">
-            <div><span class="buybox-pulse-dot"></span> LOTE OFICIAL DE LANÇAMENTO · MARCO FUNDADOR</div>
-            <div>RESTAM MENOS DE 120 PASSES</div>
-          </div>
-
-          <div class="buybox-pricing-block">
-            <div class="buybox-anchor-price">Valor Total Separado: R$ 281,80</div>
-            <div class="buybox-main-price">
-              <span class="buybox-currency">R$</span>
-              <span class="buybox-value">110</span>
-              <span class="buybox-discount-badge">61% OFF · ECONOMIA DE R$ 171,80</span>
-            </div>
-            <div class="buybox-installments">
-              Ou em até <strong>3x de R$ 39,90</strong> no cartão de crédito
-            </div>
-          </div>
-
-          <ul class="buybox-value-stack">
-            <li class="buybox-stack-item">
-              <span class="buybox-check">✓</span>
-              <div>
-                <strong>Livro Físico Canônico I: Guardião do Vazio</strong> (Autografado na Leitura Del Rey)
-                <span class="buybox-val-tag">[R$ 65,90]</span>
-              </div>
-            </li>
-            <li class="buybox-stack-item">
-              <span class="buybox-check">✓</span>
-              <div>
-                <strong>Livro Físico Canônico II: A Arte do Silêncio</strong> (Autografado na Leitura Del Rey)
-                <span class="buybox-val-tag">[R$ 65,90]</span>
-              </div>
-            </li>
-            <li class="buybox-stack-item">
-              <span class="buybox-check">✓</span>
-              <div>
-                <strong>Acervo Digital Confidencial Q51</strong> (Manuscritos, trilhas binaurais e mapas)
-                <span class="buybox-val-tag">[R$ 150,00]</span>
-              </div>
-            </li>
-            <li class="buybox-stack-item">
-              <span class="buybox-check">✓</span>
-              <div>
-                <strong>Acesso Antecipado Digital ao Livro III (Registros de Nides)</strong>
-                <span class="buybox-val-tag">[EXCLUSIVO]</span>
-              </div>
-            </li>
-            <li class="buybox-stack-item">
-              <span class="buybox-check">✓</span>
-              <div>
-                <strong>Duas Chances Legítimas de Resgatar a Chave Dourada</strong> (Apenas 5 no total)
-                <span class="buybox-val-tag">[LENDÁRIO]</span>
-              </div>
-            </li>
-            <li class="buybox-stack-item">
-              <span class="buybox-check">✓</span>
-              <div>
-                <strong>Credencial Oficial Numerada #U51-FND-XXXX</strong> e Acesso VIP ao Canal Silencioso
-                <span class="buybox-val-tag">[VITALÍCIO]</span>
-              </div>
-            </li>
-          </ul>
-
-          <button class="buybox-cta-btn open-cart-trigger">
-            ⚡ GARANTIR MEU PASSE FUNDADOR (R$ 110) ➔
-          </button>
-
-          <div class="buybox-trust-footer">
-            <span class="buybox-trust-item">🔒 Pagamento Seguro Mercado Pago / Pix</span>
-            <span class="buybox-trust-item">⚡ Confirmação Imediata na Tela</span>
-            <span class="buybox-trust-item">✍️ Retirada nos Caixas Leitura Del Rey em 21/11</span>
-          </div>
+      <!-- Livro III: Registros de Nides Minimalista -->
+      <div class="acervo-book-row">
+        <div class="acervo-book-thumb-wrap">
+          <img src="assets/book-nides.svg" alt="Registros de Nides" class="acervo-book-thumb" loading="lazy">
+        </div>
+        <div class="acervo-book-content">
+          <div class="acervo-book-title">Registros de Nides</div>
+          <div class="acervo-book-price-line">Livro III · <span style="color: var(--color-gold-card); font-weight: 600;">Em construção</span> · Acesso digital antecipado em 2027 incluso no passe</div>
         </div>
       </div>
+    </div>
 
+    <!-- Acervo Digital Expansível -->
+    <details class="acervo-digital-accordion">
+      <summary>
+        <span>Acervo digital incluído</span>
+        <span style="color: var(--color-price-pass); font-size: 13px;">Ver conteúdo ↓</span>
+      </summary>
+      <div class="acervo-digital-content">
+        <p>Materiais confirmados entregues digitalmente no Passe Fundador:</p>
+        <ul class="acervo-digital-list">
+          <li>Manuscritos originais anotados por Noah Arco</li>
+          <li>Partituras sonoras orquestrais e frequências binaurais</li>
+          <li>Mapas conceituais dos 10 setores da Terra e Nova Zaya</li>
+          <li>Acesso prioritário ao audiodrama imersivo</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <!-- 4. ETAPA DO CARTÃO DOURADO -->
+  <div class="golden-card-section">
+    <div class="ritual-kicker-clean">RESERVA DE PRESTÍGIO</div>
+    <h2>Duas chances de encontrar o Cartão Dourado</h2>
+    <p>Na compra do passe com o acervo, você recebe dois livros e duas chances de resgatar um exemplar com Cartão Dourado. Foram distribuídos exatamente cinco cartões entre os 120 exemplares do Marco Fundador.</p>
+
+    <!-- O Maior Objeto da Seção Comercial: min(82vw, 400px) -->
+    <div id="golden-card-trigger" class="golden-card-container" role="button" tabindex="0" aria-label="Ver os 4 privilégios do Cartão Dourado">
+      <div class="golden-card-wrapper">
+        <img src="assets/gold-card.svg" alt="Cartão Dourado Q51" class="golden-card-img">
+      </div>
+    </div>
+
+    <div>
+      <button id="btn-open-privileges" class="btn-open-privileges">Ver os 4 privilégios</button>
+    </div>
+  </div>
+
+  <!-- 5. ETAPA DA OFERTA (BUY BOX) -->
+  <div class="sales-offer-section">
+    <div class="offer-buybox-card">
+      <div class="offer-badge-lote">Lote de lançamento · 120 passes</div>
+      <h3 class="offer-title-price">Passe Fundador · <span class="price-tag-pass">R$ 110,00</span></h3>
+      <div class="offer-breakdown-line">Dois livros físicos + acervo digital + duas chances.</div>
+      <div class="offer-comparison-line">Dois livros avulsos: <span class="price-tag-single">R$ 131,80</span> · Ou 3 × R$ 39,90 no cartão (total R$ 119,70)</div>
+
+      <button class="btn-add-to-cart trigger-add-pass">
+        Adicionar ao carrinho · R$ 110,00
+      </button>
+
+      <div class="offer-logistics-info">
+        <strong>Retirada gratuita:</strong> 21/11, a partir das 15h · Livraria Leitura, Shopping Del Rey, BH.<br>
+        <strong>Envio nacional:</strong> Disponível pelos Correios com frete sob consulta pós-evento.
+      </div>
     </div>
   </div>
 </section>
-
-<!-- ====================================================================
-           TELA 1: AS ÓRBITAS (TERRA TÁTICA & NOVA ZAYA EM ECLIPSE)
-           ==================================================================== -->
 <section class="app-screen" id="screen-orbitas"><div class="orbit-brief"><div class="orbit-kicker"><span class="status-dot"></span> UNIVERSO Q51 / NOAH ARCO <span class="version-mark">EIDON · V2.1</span></div><h1>Dois mundos. <br/><em>Uma convergência.</em></h1><p>Existe um momento em que tudo se conecta.</p><div class="orbit-actions"><button class="btn-app-primary" data-target-screen="screen-fundadores">Confirmar presença ↗</button><button class="explore-books" data-target-screen="screen-obras">Conhecer as obras ↗</button></div></div><div class="globe-viewport-wrapper"><div class="stage-coordinate top-left">SOL / SISTEMA DE CONEXÃO</div><div class="stage-coordinate top-right">TERRA × NOVA ZAYA</div><div id="globe-stage-container"></div><div id="globe-markers"></div><button class="zaya-selector" id="zaya-select">NOVA ZAYA <span>◉</span><small>SINAL EM ECLIPSE ↗</small></button><div aria-hidden="true" aria-label="Detalhes do setor" class="globe-detail-panel" hidden="" id="globe-detail-panel" inert="" role="region"><button aria-label="Fechar setor" class="globe-card-close-btn" id="globe-card-close">×</button><div id="globe-card-content"></div></div><div class="globe-instructions-overlay">Arraste para explorar · Selecione uma bandeira</div><button aria-pressed="false" id="globe-motion">Pausar órbitas</button><p id="globe-status" role="status"></p></div><div class="launch-strip"><div><small>O PRÓXIMO ENCONTRO É AQUI</small><b>21 NOV <span>2026 / 15H</span></b></div><div><b>Leitura Del Rey</b><span>2º andar · Belo Horizonte</span></div><div><b class="strip-price">2 livros · R$ 110</b><span>120 combos nos caixas da Leitura</span></div><button data-target-screen="screen-evento">Explorar o encontro ↗</button></div><div class="sector-heading"><p>DEZ SETORES. UM UNIVERSO EM EXPANSÃO.</p><span>SELECIONE SEU PONTO DE CONEXÃO</span></div><div aria-label="Países conectados" id="sector-list"></div></section>
 <!-- ====================================================================
            TELA 2: OBRAS & MANIFESTO
@@ -476,25 +327,25 @@
             </h3>
 <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
 <div>
-<strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">📍 Local</strong>
+<strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">Local</strong>
 <p style="color: #FFFFFF; font-size: 1rem;">Livraria Leitura — Shopping Del Rey (2º Andar / Mezanino)</p>
 <small style="color: var(--text-dim);">Av. Pres. Carlos Luz, 3001 - Caiçara, Belo Horizonte - MG</small>
 </div>
 <div>
-<strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">📅 Data e Horário</strong>
+<strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">Data e Horário</strong>
 <p style="color: #FFFFFF; font-size: 1rem;">Sábado, 21 de Novembro de 2026 • 15h00 às 20h00</p>
 </div>
 <div>
-<strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">🎟 Acesso</strong>
+<strong style="color: var(--accent-gold-light); font-size: 0.85rem; text-transform: uppercase;">Acesso</strong>
 <p style="color: #FFFFFF; font-size: 1rem;">Entrada Gratuita mediante credenciamento antecipado</p>
 </div>
 </div>
 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
 <a class="nav-tab-btn" href="https://www.google.com/maps/search/?api=1&amp;query=Livraria+Leitura+Shopping+Del+Rey+Belo+Horizonte" rel="noopener" style="border-color: var(--accent-cyan); color: var(--accent-cyan);" target="_blank">
-                🗺️ Traçar Rota no Google Maps ↗
+                Traçar Rota no Google Maps ↗
               </a>
 <button class="nav-tab-btn" id="download-ics-btn" style="border-color: var(--accent-gold); color: var(--accent-gold-light);">
-                📅 Adicionar à Agenda (.ics) ↓
+                Adicionar à Agenda (.ics) ↓
               </button>
 </div>
 <!-- As 5 Chaves Douradas -->
@@ -651,7 +502,7 @@
 </div>
 
 <label class="consent"><input name="updates" type="checkbox"/>Quero receber novidades do Q51.</label><label class="consent"><input name="consent" required="" type="checkbox"/>Autorizo o uso dos dados para este cadastro e li a <a href="#privacidade">política de privacidade</a>.</label><input aria-hidden="true" class="trap" maxlength="100" name="website" tabindex="-1"/><button class="btn-app-primary" type="submit">
-              Gerar Minha Credencial de Fundador 🜂
+              Gerar Minha Credencial de Fundador
             </button><p class="form-status" role="status"></p></form>
 </div>
 </section>
@@ -686,59 +537,23 @@
 </div>
 </nav>
 </div>
-<!-- Modal dos Prêmios do Cartão Dourado -->
+<!-- Modal dos Prêmios do Cartão Dourado (Auditoria) -->
 <dialog id="golden-prizes-dialog" class="prizes-dialog">
-  <button id="close-prizes-btn" class="close" aria-label="Fechar modal de prêmios">×</button>
-  <p class="eyebrow gold-text" style="letter-spacing: 3px;">🗝️ AS 5 CHAVES DOURADAS</p>
-  <h2 style="font-family: 'Syncopate', sans-serif; font-size: 1.6rem; margin: 8px 0 20px; color: #FFF;">
-    Os 4 Privilégios do <em style="color: var(--accent-gold-light); font-style: normal;">Cartão Dourado</em>
-  </h2>
-  <p style="color: #CBD5E1; font-size: 0.95rem; margin-bottom: 24px; line-height: 1.5;">
-    Quem encontrar um dos cinco Cartões Dourados ocultados nos 120 combos do Marco Fundador desbloqueia privilégios permanentes no ecossistema de Noah Arco:
+  <div class="prizes-dialog-header">
+    <h3>Cartão Dourado</h3>
+    <button id="close-prizes-btn" class="dialog-close-btn" aria-label="Fechar modal">×</button>
+  </div>
+  <p style="font-size: 14px; color: var(--color-text-sub); margin-bottom: 20px;">
+    Cinco cartões foram inseridos entre os 120 combos do Marco Fundador. Quem resgatar um exemplar com a chave dourada garante:
   </p>
-
-  <div class="prize-card-row">
-    <div class="prize-badge-num">01</div>
-    <div>
-      <strong style="color: #FFF; font-size: 1.05rem; display: block; margin-bottom: 4px;">Exemplar Colecionador nº 1</strong>
-      <p style="color: #94A3B8; font-size: 0.88rem; margin: 0; line-height: 1.4;">
-        Cópia física de colecionador número 001 com gravação manual e autógrafo exclusivo do criador.
-      </p>
-    </div>
-  </div>
-
-  <div class="prize-card-row">
-    <div class="prize-badge-num">02</div>
-    <div>
-      <strong style="color: #FFF; font-size: 1.05rem; display: block; margin-bottom: 4px;">Estatuto Vitalício de Fundador Q51</strong>
-      <p style="color: #94A3B8; font-size: 0.88rem; margin: 0; line-height: 1.4;">
-        Acesso perpétuo e gratuito a todos os próximos lançamentos, edições especiais e expansões do Universo Q51.
-      </p>
-    </div>
-  </div>
-
-  <div class="prize-card-row">
-    <div class="prize-badge-num">03</div>
-    <div>
-      <strong style="color: #FFF; font-size: 1.05rem; display: block; margin-bottom: 4px;">Acesso Alfa Antecipado ao AudioDrama</strong>
-      <p style="color: #94A3B8; font-size: 0.88rem; margin: 0; line-height: 1.4;">
-        Primeiro ouvinte oficial da versão sonora cinematográfica antes da distribuição pública.
-      </p>
-    </div>
-  </div>
-
-  <div class="prize-card-row">
-    <div class="prize-badge-num">04</div>
-    <div>
-      <strong style="color: #FFF; font-size: 1.05rem; display: block; margin-bottom: 4px;">Mesa Secreta com Noah Arco</strong>
-      <p style="color: #94A3B8; font-size: 0.88rem; margin: 0; line-height: 1.4;">
-        Convite pessoal para encontro presencial fechado e imersão nos enigmas e bastidores da criação da obra.
-      </p>
-    </div>
-  </div>
-
-  <button id="buy-from-prizes-btn" class="confirm-paid-btn" style="margin-top: 20px;">
-    QUERO MINHAS 2 CHANCES — GARANTIR PASSE (R$ 110) ➔
+  <ul class="prizes-dialog-list">
+    <li class="prize-line-item"><span class="prize-num">01</span> <span>Exemplar numerado de colecionador</span></li>
+    <li class="prize-line-item"><span class="prize-num">02</span> <span>Estatuto Vitalício de Fundador</span></li>
+    <li class="prize-line-item"><span class="prize-num">03</span> <span>Acesso antecipado ao audiodrama</span></li>
+    <li class="prize-line-item"><span class="prize-num">04</span> <span>Encontro de bastidores com Noah Arco</span></li>
+  </ul>
+  <button id="btn-dialog-add-pass" class="btn-dialog-add-pass">
+    Adicionar passe · R$ 110
   </button>
 </dialog>
 
@@ -746,129 +561,13 @@
 <div id="cart-drawer-overlay" class="cart-drawer-overlay"></div>
 <aside id="cart-drawer" class="cart-drawer">
   <div class="cart-drawer-header">
-    <h3>CARRINHO // PASSE FUNDADOR</h3>
+    <h3>Seu carrinho</h3>
     <button id="close-cart-btn" class="cart-close-btn" aria-label="Fechar carrinho">×</button>
   </div>
-  <div class="cart-drawer-body">
-    <!-- Resumo do Produto -->
-    <div class="cart-product-summary">
-      <div style="display: flex; gap: 14px; align-items: center;">
-        <img src="assets/vazio.webp" alt="Passe Q51" style="width: 55px; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.6);">
-        <div>
-          <div class="cart-product-title">Passe de Fundador Q51</div>
-          <div style="font-size: 11px; color: var(--accent-cyan); margin: 3px 0;">2 Livros Físicos + Acervo Digital (R$ 150) + 2 Chances Ouro</div>
-          <div class="cart-product-price">R$ 110,00</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Opção de Entrega / Retirada -->
-    <div class="delivery-selector-box">
-      <label class="delivery-option">
-        <input type="radio" name="delivery_type" value="pickup" checked>
-        <div>
-          <strong>Retirada no Marco Fundador (21/11)</strong>
-          <small style="display: block; color: #94A3B8;">Livraria Leitura Del Rey · Belo Horizonte — <b>Frete Grátis</b></small>
-        </div>
-      </label>
-      <label class="delivery-option">
-        <input type="radio" name="delivery_type" value="shipping">
-        <div>
-          <strong>Envio Especial para Todo o Brasil</strong>
-          <small style="display: block; color: #94A3B8;">Despacho pós-evento pelos Correios (Frete acertado após o evento)</small>
-        </div>
-      </label>
-    </div>
-
-    <!-- Dados do Fundador -->
-    <div style="margin-bottom: 20px;">
-      <label style="display: block; font-size: 11px; color: #94A3B8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">Identificação do Fundador</label>
-      <input id="cart-cust-name" type="text" placeholder="Nome Completo" class="form-input-app" style="width: 100%; margin-bottom: 10px;">
-      <input id="cart-cust-phone" type="tel" placeholder="WhatsApp com DDD" class="form-input-app" style="width: 100%; margin-bottom: 10px;">
-      <input id="cart-cust-email" type="email" placeholder="Seu melhor e-mail" class="form-input-app" style="width: 100%;">
-    </div>
-
-    <!-- Abas de Pagamento (Mercado Pago Bricks Transparente) -->
-    <div class="payment-tabs">
-      <button id="tab-pay-pix" class="payment-tab-btn active">⚡ Pix Instantâneo</button>
-      <button id="tab-pay-card" class="payment-tab-btn">💳 Cartão de Crédito</button>
-    </div>
-
-    <!-- Painel Pix -->
-    <div id="pane-pay-pix">
-      <div style="text-align: center;">
-        <div class="pix-qr-container">
-          <svg width="180" height="180" viewBox="0 0 100 100" fill="#000">
-            <rect width="100" height="100" fill="#FFF"/>
-            <rect x="10" y="10" width="25" height="25" fill="#000"/>
-            <rect x="15" y="15" width="15" height="15" fill="#FFF"/>
-            <rect x="18" y="18" width="9" height="9" fill="#000"/>
-            <rect x="65" y="10" width="25" height="25" fill="#000"/>
-            <rect x="70" y="15" width="15" height="15" fill="#FFF"/>
-            <rect x="73" y="18" width="9" height="9" fill="#000"/>
-            <rect x="10" y="65" width="25" height="25" fill="#000"/>
-            <rect x="15" y="70" width="15" height="15" fill="#FFF"/>
-            <rect x="18" y="73" width="9" height="9" fill="#000"/>
-            <rect x="42" y="15" width="6" height="6" fill="#000"/>
-            <rect x="52" y="20" width="6" height="6" fill="#000"/>
-            <rect x="40" y="35" width="20" height="6" fill="#000"/>
-            <rect x="45" y="45" width="10" height="10" fill="#000"/>
-            <rect x="25" y="42" width="6" height="15" fill="#000"/>
-            <rect x="65" y="42" width="25" height="6" fill="#000"/>
-            <rect x="42" y="65" width="6" height="25" fill="#000"/>
-            <rect x="55" y="65" width="15" height="8" fill="#000"/>
-            <rect x="75" y="75" width="15" height="15" fill="#000"/>
-          </svg>
-        </div>
-        <div class="pix-code-box">
-          <input id="pix-copia-cola" type="text" value="00020126580014br.gov.bcb.pix0136q51-marco-fundador-2026@universoq51.com.br5204000053039865406110.005802BR5925NOAH ARCO UNIVERSO Q516009BELO HORIZONTE62070503***6304ABCD" readonly style="width: 100%; background: transparent; border: none; color: #CBD5E1; font-family: monospace; font-size: 11px;">
-        </div>
-        <button id="copy-pix-btn" class="copy-pix-btn">📋 Copiar Código Pix Copia e Cola</button>
-        <button class="confirm-paid-btn trigger-finalize-payment">
-          Confirmar Pagamento Pix — R$ 110 ➔
-        </button>
-      </div>
-    </div>
-
-    <!-- Painel Cartão -->
-    <div id="pane-pay-card" hidden>
-      <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
-        <input type="text" placeholder="Número do Cartão de Crédito" class="form-input-app">
-        <input type="text" placeholder="Nome Impresso no Cartão" class="form-input-app">
-        <div style="display: flex; gap: 10px;">
-          <input type="text" placeholder="MM/AA" class="form-input-app" style="flex: 1;">
-          <input type="text" placeholder="CVV" class="form-input-app" style="flex: 1;">
-        </div>
-        <select class="form-input-app" style="background: rgba(2,2,5,0.8); color: #FFF;">
-          <option value="1">1x de R$ 110,00 (sem juros)</option>
-          <option value="2">2x de R$ 57,50</option>
-          <option value="3">3x de R$ 39,90</option>
-        </select>
-        <button class="confirm-paid-btn trigger-finalize-payment" style="margin-top: 10px;">
-          Pagar com Cartão — R$ 110 ➔
-        </button>
-      </div>
-    </div>
-
-    <!-- Opção Caixa da Leitura -->
-    <div style="margin-top: 25px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
-      <button class="trigger-finalize-payment" style="background: transparent; border: 1px dashed rgba(229,199,122,0.4); color: var(--accent-gold-light); padding: 12px; border-radius: 4px; font-size: 11px; font-weight: 700; width: 100%; cursor: pointer;">
-        Prefere pagar na Livraria? Reservar para Pagar no Caixa da Leitura Del Rey ↗
-      </button>
-    </div>
+  <div class="cart-drawer-body" id="cart-drawer-content">
+    <!-- O conteúdo é gerenciado dinamicamente por funnel.js (inicia vazio se não houver item salvo) -->
   </div>
 </aside>
-
-<!-- Barra Fixa Mobile Express -->
-<div class="mobile-express-bar">
-  <div>
-    <div style="font-family: 'Syncopate', sans-serif; font-size: 13px; font-weight: 800; color: #FFF;">PASSE FUNDADOR</div>
-    <div style="font-size: 11px; color: var(--accent-gold-light);">R$ 110 <s style="color: #64748B; font-size: 9px;">R$ 281,80</s></div>
-  </div>
-  <button class="express-buy-btn open-cart-trigger">
-    ⚡ 1 Clique
-  </button>
-</div>
 
 <!-- Modal de Credencial Emitida -->
 <!-- Scripts -->

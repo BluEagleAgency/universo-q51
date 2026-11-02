@@ -1,174 +1,167 @@
 /* ==========================================================================
-   UNIVERSO Q51 — FUNIL DE VENDAS & RITUAL INICIÁTICO
-   Baseado no esboço de Fábio Mesquita e nos componentes do AI Studio
+   UNIVERSO Q51 — FUNIL DE VENDAS & PASSE FUNDADOR (V2.2 AUDITORIA)
+   Conforme especificações da Auditoria de Vendas (02/11/2026)
+   Cores: Preto (#000000), Texto (#F2F1ED / #B4B4AE), Avulso (#FF827F), Passe (#72DE98)
+   Tipografia: Inter (com fallback Arial / sans-serif)
    ========================================================================== */
 
 :root {
-  --gold-glow: rgba(229, 199, 122, 0.45);
-  --gold-sheen: linear-gradient(135deg, #FFF2B2 0%, #E5C77A 30%, #C5A059 60%, #8C6A24 100%);
-  --cyan-glow: rgba(0, 242, 255, 0.4);
-  --glass-funnel: rgba(6, 11, 21, 0.88);
-  --border-funnel: rgba(229, 199, 122, 0.25);
+  --color-black: #000000;
+  --color-text-main: #F2F1ED;
+  --color-text-sub: #B4B4AE;
+  --color-price-single: #FF827F;
+  --color-price-pass: #72DE98;
+  --color-border-subtle: #262624;
+  --color-border-focus: #40403C;
+  --color-gold-card: #C5A059;
+  --font-sales: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
 }
 
 /* ==========================================================================
-   TOP BAR CART & EXPRESS 1-CLIQUE BUTTONS
+   REGRAS GERAIS DA SEÇÃO COMERCIAL (#screen-passe)
+   ========================================================================== */
+#screen-passe {
+  background-color: var(--color-black) !important;
+  color: var(--color-text-main);
+  font-family: var(--font-sales);
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 0 0 100px;
+  min-height: 100vh;
+}
+
+#screen-passe * {
+  box-sizing: border-box;
+}
+
+/* Títulos da Seção Comercial */
+#screen-passe h1,
+#screen-passe h2,
+#screen-passe h3 {
+  font-family: var(--font-sales);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  margin-top: 0;
+}
+
+#screen-passe p {
+  color: var(--color-text-sub);
+  margin: 0 0 16px;
+}
+
+/* Preços padronizados */
+.price-tag-single {
+  color: var(--color-price-single);
+  font-weight: 600;
+  font-feature-settings: 'tnum' on;
+}
+.price-tag-pass {
+  color: var(--color-price-pass);
+  font-weight: 600;
+  font-feature-settings: 'tnum' on;
+}
+
+/* ==========================================================================
+   CABECALHO: BOTOES DE CARRINHO E COMPRA
    ========================================================================== */
 .nav-cart-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(197, 160, 89, 0.12);
-  border: 1px solid var(--accent-gold);
-  color: #FFF;
-  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-main);
+  padding: 8px 14px;
   border-radius: 4px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-family: var(--font-sales);
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.2s, background-color 0.2s;
 }
 .nav-cart-btn:hover {
-  background: rgba(197, 160, 89, 0.25);
-  box-shadow: 0 0 16px var(--gold-glow);
-  transform: translateY(-1px);
+  border-color: var(--color-border-focus);
+  background-color: #121210;
+}
+.nav-cart-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
 }
 .cart-pill-count {
-  background: var(--accent-gold);
-  color: #020205;
-  font-size: 9px;
-  font-weight: 900;
+  background: var(--color-price-pass);
+  color: #000000;
+  font-size: 11px;
+  font-weight: 700;
   padding: 1px 6px;
   border-radius: 10px;
 }
-.cart-pill-price {
-  color: var(--accent-gold-light);
+.cart-pill-count:empty,
+.cart-pill-count[data-count="0"] {
+  display: none;
 }
 
 .express-buy-btn {
-  background: linear-gradient(135deg, #FFDF85 0%, #C5A059 100%);
-  color: #020205 !important;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 800;
-  font-size: 11px;
-  letter-spacing: 1.2px;
-  padding: 10px 18px;
+  background: var(--color-text-main);
+  color: var(--color-black) !important;
+  font-family: var(--font-sales);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(197, 160, 89, 0.35);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  transition: all 0.25s ease;
+  gap: 6px;
+  transition: opacity 0.2s;
   text-decoration: none;
 }
 .express-buy-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(197, 160, 89, 0.6);
+  opacity: 0.9;
 }
 
 /* ==========================================================================
-   TELA INICIÁTICA: RITUAL DA CHAVE DE ACESSO & LOOT BOX (ESBOÇO 1)
+   1. ETAPA DA CHAVE (ESBOÇO 1 / AUDITORIA)
    ========================================================================== */
 .ritual-hero-section {
   position: relative;
-  min-height: 85vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 40px 20px;
-  overflow: hidden;
+  padding: 60px 20px;
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
 .ritual-step-box {
-  max-width: 680px;
+  max-width: 580px;
   width: 100%;
   margin: 0 auto;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Passo 1: Fade */
-.step-fade {
-  opacity: 0;
-  transform: translateY(15px);
-  animation: ritualFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-@keyframes ritualFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.ritual-kicker {
-  font-family: 'Space Grotesk', monospace;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--accent-cyan);
+.ritual-kicker-clean {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--color-text-sub);
   text-transform: uppercase;
   margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.ritual-code-badge {
-  font-family: monospace;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: var(--accent-gold-light);
-  background: rgba(197, 160, 89, 0.1);
-  border: 1px solid rgba(197, 160, 89, 0.4);
-  padding: 8px 18px;
-  border-radius: 4px;
-  display: inline-block;
-  margin: 10px 0 20px;
-  box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
 }
 
-/* Passo 2: Slide */
-.step-slide {
-  opacity: 0;
-  transform: translateY(25px);
-  animation: ritualSlideUp 0.8s 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-@keyframes ritualSlideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.ritual-title-clean {
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.15;
+  margin-bottom: 16px;
 }
 
-.security-warning-card {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  padding: 16px 24px;
-  border-radius: 6px;
-  margin-bottom: 30px;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  color: #E2E8F0;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-}
-.security-warning-card span {
-  font-size: 20px;
-}
-
-/* Passo 3: Botão da Chave [ 🔑 ] com Partículas Orbitais (AI Studio) */
 .key-activation-stage {
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 10px auto 30px;
+  width: 160px;
+  height: 160px;
+  margin: 30px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,391 +178,482 @@
   left: 50%;
   background: #FFF;
   border-radius: 50%;
-  box-shadow: 0 0 10px #00f2ff, 0 0 20px #e5c77a;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 @keyframes orbitalSpin {
-  from { transform: rotate(0deg) translateX(var(--orbit-radius, 80px)) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(var(--orbit-radius, 80px)) rotate(-360deg); }
+  from { transform: rotate(0deg) translateX(var(--orbit-radius, 65px)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--orbit-radius, 65px)) rotate(-360deg); }
 }
 
-.ritual-key-btn {
+.btn-activate-key {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #2a2012, #0d0a06 80%);
-  border: 2px solid var(--accent-gold);
-  color: var(--accent-gold-light);
-  font-size: 42px;
+  background: #0A0A0A;
+  border: 1.5px solid var(--color-gold-card);
+  color: var(--color-text-main);
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 0 35px rgba(229, 199, 122, 0.35);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
   z-index: 5;
 }
-.ritual-key-btn:hover {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 0 50px rgba(229, 199, 122, 0.7);
-  border-color: #FFF2B2;
+.btn-activate-key:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
 }
-.ritual-key-btn:active {
-  transform: scale(0.95);
+.btn-activate-key svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--color-gold-card);
 }
-.key-click-callout {
-  font-family: 'Space Grotesk', sans-serif;
+.btn-activate-label {
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: var(--accent-gold-light);
-  margin-top: 10px;
-  text-transform: uppercase;
-  animation: keyPulseText 1.5s infinite;
-}
-@keyframes keyPulseText {
-  0%, 100% { opacity: 0.6; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(-3px); }
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
 }
 
 /* ==========================================================================
-   LOOT BOX EFFECT (A ABERTURA CINEMATOGRÁFICA)
+   2. ETAPA DA RECOMPENSA (O FRAGMENTO)
    ========================================================================== */
-.lootbox-shockwave {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(circle at center, rgba(229, 199, 122, 0.5) 0%, transparent 60%);
-  opacity: 0;
-  z-index: 999;
-  transition: opacity 0.3s ease;
-}
-.lootbox-shockwave.active {
-  animation: shockwaveBoom 0.8s ease-out forwards;
-}
-@keyframes shockwaveBoom {
-  0% { opacity: 1; transform: scale(0.3); }
-  50% { opacity: 0.8; transform: scale(1.4); }
-  100% { opacity: 0; transform: scale(2.2); }
-}
-
-/* Card de Parabéns / Coleta de Prêmios */
 .reward-unlocked-card {
-  background: rgba(10, 16, 28, 0.95);
-  border: 1px solid var(--accent-gold);
-  border-radius: 8px;
-  padding: 35px 28px;
+  background: #080808;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 6px;
+  padding: 36px 28px;
   max-width: 540px;
   width: 100%;
   margin: 0 auto;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(197, 160, 89, 0.25);
-  animation: rewardPop 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-@keyframes rewardPop {
-  0% { opacity: 0; transform: scale(0.85) translateY(30px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.reward-badge-tag {
-  display: inline-block;
-  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-  color: #FFF;
-  font-family: 'Space Grotesk', monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  padding: 5px 14px;
-  border-radius: 20px;
-  margin-bottom: 15px;
-}
-
-.fragment-audio-preview {
-  background: rgba(2, 6, 14, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
-  padding: 14px 18px;
-  margin: 18px 0 24px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
   text-align: left;
 }
-.play-mini-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--accent-cyan);
-  color: #020205;
+.reward-unlocked-card h2 {
+  font-size: clamp(24px, 4vw, 32px);
+  margin-bottom: 8px;
+}
+
+.audio-player-box {
+  background: #101010;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.audio-player-info {
+  flex: 1;
+}
+.audio-track-title {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text-main);
+}
+.audio-track-time {
+  font-size: 12px;
+  color: var(--color-text-sub);
+  font-feature-settings: 'tnum' on;
+}
+.btn-audio-control {
+  background: var(--color-text-main);
+  color: var(--color-black);
   border: none;
-  font-size: 16px;
+  border-radius: 4px;
+  padding: 10px 18px;
+  font-family: var(--font-sales);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.2s;
+}
+.btn-audio-control:hover { opacity: 0.9; }
+
+.btn-proceed-pass {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-main);
+  font-family: var(--font-sales);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+}
+.btn-proceed-pass:hover {
+  border-color: var(--color-border-focus);
+  background-color: #121210;
+}
+
+/* ==========================================================================
+   3. ETAPA DO ACERVO (UMA LINHA POR LIVRO / CAPAS ATÉ 144PX)
+   ========================================================================== */
+.sales-acervo-section {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.sales-acervo-header {
+  margin-bottom: 32px;
+}
+.sales-acervo-header h2 {
+  font-size: clamp(28px, 4.5vw, 42px);
+  margin-bottom: 8px;
+}
+
+.acervo-books-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.acervo-book-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: #050505;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 6px;
+  padding: 18px 24px;
+  transition: border-color 0.2s;
+}
+.acervo-book-row:hover {
+  border-color: var(--color-border-focus);
+}
+
+.acervo-book-thumb-wrap {
+  width: 100px;
+  height: 144px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   flex-shrink: 0;
-  transition: transform 0.2s;
+  background: #000;
+  border-radius: 3px;
+  overflow: hidden;
 }
-.play-mini-btn:hover { transform: scale(1.1); }
+.acervo-book-thumb {
+  max-height: 144px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 
-.reward-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 15px;
+.acervo-book-content {
+  flex: 1;
 }
-.reward-form input {
-  background: rgba(2, 2, 5, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #FFF;
-  padding: 13px 16px;
-  border-radius: 4px;
+.acervo-book-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 4px;
+}
+.acervo-book-price-line {
   font-size: 14px;
-}
-.reward-form input:focus {
-  border-color: var(--accent-gold);
-}
-.reward-collect-btn {
-  background: linear-gradient(135deg, #C5A059 0%, #E5C77A 100%);
-  color: #020205;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 1.5px;
-  padding: 14px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
-  transition: all 0.25s ease;
-}
-.reward-collect-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(197, 160, 89, 0.7);
+  color: var(--color-text-sub);
 }
 
-.skip-step-link {
-  display: inline-block;
-  margin-top: 14px;
-  font-size: 11px;
-  color: var(--text-dim);
-  text-decoration: underline;
-  cursor: pointer;
-  transition: color 0.2s;
+/* Acervo Digital Expansível */
+.acervo-digital-accordion {
+  background: #050505;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 6px;
+  margin-top: 20px;
+  padding: 20px 24px;
 }
-.skip-step-link:hover { color: #FFF; }
+.acervo-digital-accordion summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+.acervo-digital-accordion summary::-webkit-details-marker {
+  display: none;
+}
+.acervo-digital-content {
+  padding-top: 16px;
+  font-size: 14px;
+  color: var(--color-text-sub);
+  line-height: 1.6;
+}
+.acervo-digital-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+.acervo-digital-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid #141414;
+}
+.acervo-digital-list li:last-child {
+  border-bottom: none;
+}
 
 /* ==========================================================================
-   ETAPA 2: O PASSE FUNDADOR & CARTÃO DOURADO (ESBOÇO 2)
+   4. ETAPA DO CARTÃO DOURADO (MAIOR OBJETO DA SEÇÃO)
    ========================================================================== */
-.fundador-sales-stage {
-  padding: 80px 0 100px;
-  background: radial-gradient(circle at 50% 20%, rgba(18, 24, 40, 0.8) 0%, rgba(2, 2, 5, 0.98) 100%);
-  position: relative;
-  border-top: 1px solid rgba(197, 160, 89, 0.2);
+.golden-card-section {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 70px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
-.collected-success-banner {
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid #10B981;
-  color: #34D399;
-  padding: 12px 24px;
-  border-radius: 40px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+.golden-card-section h2 {
+  font-size: clamp(28px, 4.5vw, 42px);
+  margin-bottom: 16px;
+}
+
+.golden-card-section p {
+  max-width: 640px;
+  margin: 0 auto 36px;
+  font-size: 16px;
+}
+
+/* O maior objeto: min(82vw, 400px) */
+.golden-card-container {
+  width: min(82vw, 400px);
+  margin: 0 auto 30px;
+  cursor: pointer;
+  perspective: 1000px;
+  outline: none;
+}
+.golden-card-container:focus-visible {
+  outline: 2px solid var(--color-gold-card);
+  outline-offset: 8px;
+  border-radius: 12px;
+}
+
+.golden-card-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 540 / 320;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+}
+.golden-card-container:hover .golden-card-wrapper {
+  transform: scale(1.03) translateY(-4px);
+  box-shadow: 0 15px 40px rgba(197, 160, 89, 0.25);
+}
+
+.golden-card-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+.btn-open-privileges {
+  background: transparent;
+  border: 1px solid var(--color-gold-card);
+  color: var(--color-gold-card);
+  font-family: var(--font-sales);
   font-size: 13px;
   font-weight: 600;
-  margin-bottom: 25px;
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
-}
-
-.sales-headline-master {
-  font-family: 'Syncopate', sans-serif;
-  font-size: clamp(2rem, 4.5vw, 3.4rem);
-  line-height: 1.15;
-  text-transform: uppercase;
-  color: #FFF;
-  margin-bottom: 20px;
-}
-.sales-headline-master em {
-  font-style: normal;
-  background: var(--gold-sheen);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Grid dos Livros com 3D Tilt do AI Studio */
-.books-tilt-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  max-width: 900px;
-  margin: 40px auto;
-}
-
-.tilt-card-wrap {
-  perspective: 1000px;
-}
-.tilt-card-inner {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 30px;
-  backdrop-filter: blur(12px);
-  transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
-  transition: transform 0.15s ease-out, border-color 0.3s;
-  text-align: left;
-}
-.tilt-card-inner:hover {
-  border-color: var(--accent-gold);
-}
-
-/* CARTÃO DOURADO HERO (O CLÍMAX DE CONVERSÃO) */
-.golden-climax-card {
-  background: radial-gradient(circle at 50% 0%, rgba(45, 35, 17, 0.7) 0%, rgba(10, 10, 12, 0.95) 100%);
-  border: 2px solid var(--accent-gold);
-  border-radius: 12px;
-  padding: 45px 35px;
-  max-width: 960px;
-  margin: 50px auto 30px;
-  position: relative;
-  box-shadow: 0 0 60px rgba(197, 160, 89, 0.25), inset 0 0 30px rgba(197, 160, 89, 0.1);
-  text-align: center;
-}
-
-.golden-hero-tag {
-  font-family: 'Syncopate', sans-serif;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: #FFF2B2;
-  background: rgba(197, 160, 89, 0.2);
-  border: 1px solid var(--accent-gold);
-  padding: 6px 16px;
-  border-radius: 20px;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
-.golden-card-display {
-  max-width: 440px;
-  margin: 25px auto;
+  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
+  transition: background-color 0.2s, color 0.2s;
 }
-.golden-card-display:hover {
-  transform: scale(1.04) translateY(-5px);
-  filter: drop-shadow(0 0 30px rgba(229, 199, 122, 0.6));
-}
-.click-inspect-badge {
-  position: absolute;
-  bottom: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #020205;
-  border: 1px solid var(--accent-gold);
-  color: var(--accent-gold-light);
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  padding: 5px 14px;
-  border-radius: 20px;
-  white-space: nowrap;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-}
-
-.two-chances-headline {
-  font-family: 'Syncopate', sans-serif;
-  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
-  color: #FFF;
-  margin: 30px 0 15px;
-  text-transform: uppercase;
-}
-.two-chances-headline span {
-  color: #FFDF85;
-  text-shadow: 0 0 20px rgba(255, 223, 133, 0.5);
-}
-
-.fundador-perks-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  margin: 35px 0 40px;
-  text-align: left;
-}
-.perk-item {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 14px 18px;
-  border-radius: 6px;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 13px;
-  color: #E2E8F0;
-}
-.perk-item strong {
-  color: #FFF;
-  display: block;
-  font-size: 14px;
-  margin-bottom: 2px;
-}
-.perk-check {
-  color: #10B981;
-  font-size: 16px;
-  line-height: 1;
+.btn-open-privileges:hover {
+  background: var(--color-gold-card);
+  color: var(--color-black);
 }
 
 /* ==========================================================================
-   MODAL DOS PRÊMIOS DA CHAVE DOURADA
+   5. MODAL DOS PRIVILÉGIOS (CARTÃO DOURADO)
    ========================================================================== */
 .prizes-dialog {
-  background: #050811;
-  border: 2px solid var(--accent-gold);
-  border-radius: 10px;
+  background: #000000;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
   padding: 40px 32px;
-  max-width: 650px;
+  max-width: 560px;
   width: 90vw;
-  color: #FFF;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(197, 160, 89, 0.3);
+  color: var(--color-text-main);
+  font-family: var(--font-sales);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95);
+  position: fixed;
+  inset: 0;
+  margin: auto;
 }
 .prizes-dialog::backdrop {
-  background: rgba(2, 2, 5, 0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
 }
-.prize-card-row {
+
+.prizes-dialog-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 16px;
+}
+.prizes-dialog-header h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+.dialog-close-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-sub);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.dialog-close-btn:hover {
+  color: var(--color-text-main);
+}
+
+.prizes-dialog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border-left: 3px solid var(--accent-gold);
+}
+.prize-line-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--color-text-main);
+  border-bottom: 1px solid #141414;
+  padding-bottom: 12px;
+}
+.prize-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-gold-card);
+  font-feature-settings: 'tnum' on;
+  min-width: 20px;
+}
+
+.btn-dialog-add-pass {
+  width: 100%;
+  background: var(--color-text-main);
+  color: var(--color-black);
+  border: none;
+  border-radius: 4px;
   padding: 16px;
-  margin-bottom: 14px;
-  border-radius: 0 4px 4px 0;
+  font-family: var(--font-sales);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-dialog-add-pass:hover { opacity: 0.9; }
+
+/* ==========================================================================
+   6. OFERTA / BUY BOX (AMAZON / MERCADO LIVRE AUDITORIA)
+   ========================================================================== */
+.sales-offer-section {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 70px 20px 40px;
+}
+
+.offer-buybox-card {
+  background: #050505;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  padding: 36px 32px;
   text-align: left;
 }
-.prize-badge-num {
-  font-family: 'Syncopate', sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--accent-gold);
-  line-height: 1;
+
+.offer-badge-lote {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--color-text-sub);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.offer-title-price {
+  font-size: clamp(28px, 4.5vw, 40px);
+  margin-bottom: 8px;
+}
+
+.offer-breakdown-line {
+  font-size: 15px;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+}
+
+.offer-comparison-line {
+  font-size: 14px;
+  color: var(--color-text-sub);
+  margin-bottom: 24px;
+}
+
+.btn-add-to-cart {
+  width: 100%;
+  background: var(--color-price-pass);
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  padding: 16px;
+  font-family: var(--font-sales);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.btn-add-to-cart:hover {
+  opacity: 0.92;
+}
+.btn-add-to-cart:active {
+  transform: scale(0.99);
+}
+
+.offer-logistics-info {
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 20px;
+  font-size: 13px;
+  color: var(--color-text-sub);
+  line-height: 1.6;
+}
+.offer-logistics-info strong {
+  color: var(--color-text-main);
 }
 
 /* ==========================================================================
-   GAVETA LATERAL DO CARRINHO & CHECKOUT TRANSPARENTE
+   7. GAVETA LATERAL DO CARRINHO (DRAWER)
    ========================================================================== */
 .cart-drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(2, 4, 10, 0.8);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
 }
 .cart-drawer-overlay.open {
   opacity: 1;
@@ -582,16 +666,17 @@
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 500px;
-  background: #070B16;
-  border-left: 1px solid rgba(197, 160, 89, 0.3);
+  max-width: 460px;
+  background: #000000;
+  border-left: 1px solid var(--color-border-subtle);
   z-index: 1001;
   transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  box-shadow: -15px 0 50px rgba(0, 0, 0, 0.8);
+  color: var(--color-text-main);
+  font-family: var(--font-sales);
 }
 .cart-drawer.open {
   transform: translateX(0);
@@ -599,29 +684,23 @@
 
 .cart-drawer-header {
   padding: 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--color-border-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .cart-drawer-header h3 {
-  font-family: 'Syncopate', sans-serif;
-  font-size: 15px;
-  letter-spacing: 1.5px;
-  color: #FFF;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
 }
 .cart-close-btn {
   background: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #FFF;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  font-size: 18px;
+  border: none;
+  color: var(--color-text-sub);
+  font-size: 24px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 1;
 }
 
 .cart-drawer-body {
@@ -629,323 +708,214 @@
   flex-grow: 1;
 }
 
-.cart-product-summary {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(197, 160, 89, 0.25);
-  border-radius: 6px;
-  padding: 18px;
-  margin-bottom: 24px;
+/* Carrinho Vazio */
+.cart-empty-state {
+  text-align: center;
+  padding: 40px 10px;
 }
-.cart-product-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: #FFF;
-}
-.cart-product-price {
-  font-family: 'Syncopate', sans-serif;
-  font-size: 22px;
-  color: var(--accent-gold-light);
-  margin-top: 6px;
+.cart-empty-state p {
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 
-.delivery-selector-box {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
+/* Item no Carrinho */
+.cart-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #080808;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 4px;
   padding: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
-.delivery-option {
+.cart-item-details {
+  flex: 1;
+}
+.cart-item-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+.cart-item-desc {
+  font-size: 12px;
+  color: var(--color-text-sub);
+}
+.cart-item-qty-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.btn-cart-remove {
+  background: none;
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-sub);
+  padding: 4px 8px;
+  font-size: 11px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.btn-cart-remove:hover {
+  border-color: var(--color-border-focus);
+  color: var(--color-text-main);
+}
+
+/* Formas de Entrega */
+.cart-delivery-box {
+  background: #080808;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.cart-radio-option {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin-bottom: 12px;
-  cursor: pointer;
+  margin-bottom: 10px;
   font-size: 13px;
-  color: #E2E8F0;
+  cursor: pointer;
 }
-.delivery-option:last-child { margin-bottom: 0; }
-.delivery-option input[type="radio"] {
-  accent-color: var(--accent-gold);
+.cart-radio-option:last-child {
+  margin-bottom: 0;
+}
+.cart-radio-option input[type="radio"] {
+  accent-color: var(--color-text-main);
   margin-top: 3px;
 }
 
-/* Abas de Pagamento */
-.payment-tabs {
+/* Resumo de Totais */
+.cart-totals-box {
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 16px;
+  margin-bottom: 24px;
+}
+.cart-totals-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: var(--color-text-sub);
+}
+.cart-totals-row.cart-total-final {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-main);
+  border-top: 1px solid #141414;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+/* Métodos de Pagamento */
+.payment-tabs-clean {
   display: flex;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
-.payment-tab-btn {
+.btn-pay-tab {
   flex: 1;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-dim);
-  padding: 12px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  background: #0A0A0A;
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-sub);
+  padding: 10px;
+  font-family: var(--font-sales);
+  font-size: 13px;
+  font-weight: 500;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s;
 }
-.payment-tab-btn.active {
-  background: rgba(197, 160, 89, 0.15);
-  border-color: var(--accent-gold);
-  color: var(--accent-gold-light);
+.btn-pay-tab.active {
+  border-color: var(--color-text-main);
+  color: var(--color-text-main);
+  background: #141414;
 }
 
-.pix-qr-container {
+.pix-qr-clean {
   background: #FFF;
-  padding: 16px;
-  border-radius: 6px;
+  padding: 14px;
+  border-radius: 4px;
   display: inline-block;
-  margin: 15px 0;
+  margin: 10px 0;
 }
-.pix-code-box {
-  background: rgba(2, 2, 5, 0.8);
-  border: 1px dashed rgba(255, 255, 255, 0.2);
-  padding: 12px;
+.pix-code-clean {
+  background: #080808;
+  border: 1px solid var(--color-border-subtle);
+  padding: 10px;
   border-radius: 4px;
   font-family: monospace;
   font-size: 11px;
   word-break: break-all;
-  color: #A0AEC0;
-  margin-bottom: 10px;
+  color: var(--color-text-sub);
+  margin-bottom: 12px;
 }
-.copy-pix-btn {
+.btn-copy-pix {
   width: 100%;
-  background: rgba(0, 242, 255, 0.15);
-  border: 1px solid var(--accent-cyan);
-  color: var(--accent-cyan);
+  background: transparent;
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-main);
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+.btn-copy-pix:hover {
+  border-color: var(--color-border-focus);
+}
+
+.btn-finalize-pay {
+  width: 100%;
+  background: var(--color-price-pass);
+  color: #000000;
+  padding: 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-finalize-pay:hover { opacity: 0.92; }
+
+.btn-reserve-bookstore {
+  width: 100%;
+  background: transparent;
+  border: 1px dashed var(--color-border-subtle);
+  color: var(--color-text-sub);
   padding: 12px;
   border-radius: 4px;
-  font-weight: 700;
   font-size: 12px;
   cursor: pointer;
-  margin-bottom: 12px;
-  transition: all 0.2s;
+  margin-top: 16px;
+  transition: color 0.2s, border-color 0.2s;
 }
-.copy-pix-btn:hover {
-  background: var(--accent-cyan);
-  color: #020205;
+.btn-reserve-bookstore:hover {
+  border-color: var(--color-border-focus);
+  color: var(--color-text-main);
 }
-
-.confirm-paid-btn {
-  width: 100%;
-  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-  color: #FFF;
-  padding: 15px;
-  border: none;
-  border-radius: 4px;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
-  transition: all 0.2s;
-}
-.confirm-paid-btn:hover {
-  box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
-  transform: translateY(-1px);
-}
-
-/* Barra Fixa Mobile Express */
-.mobile-express-bar {
-  display: none;
-}
-@media (max-width: 768px) {
-  .mobile-express-bar {
-    display: flex;
-    position: fixed;
-    bottom: 58px;
-    left: 0;
-    right: 0;
-    background: rgba(7, 11, 22, 0.95);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(197, 160, 89, 0.4);
-    padding: 10px 16px;
-    z-index: 900;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-
 
 /* ==========================================================================
-   AMAZON / MERCADO LIVRE STYLE BUY BOX (ALTA CONVERSÃO)
+   8. ADAPTAÇÕES MOBILE (TELA PEQUENA)
    ========================================================================== */
-.buybox-section {
-  max-width: 820px;
-  margin: 50px auto 30px;
-  padding: 0 16px;
-}
-
-.buybox-card {
-  background: #04060B;
-  border: 1.5px solid var(--accent-gold);
-  border-radius: 8px;
-  padding: 36px 32px;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(197, 160, 89, 0.2);
-  text-align: left;
-}
-
-.buybox-urgency-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(229, 199, 122, 0.08);
-  border: 1px solid rgba(229, 199, 122, 0.3);
-  padding: 10px 18px;
-  border-radius: 4px;
-  margin-bottom: 24px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: var(--accent-gold-light);
-  text-transform: uppercase;
-}
-
-.buybox-pulse-dot {
-  width: 8px;
-  height: 8px;
-  background: #10B981;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 6px;
-  box-shadow: 0 0 10px #10B981;
-  animation: pulseDot 1.5s infinite;
-}
-@keyframes pulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.8); }
-}
-
-.buybox-pricing-block {
-  margin-bottom: 24px;
-}
-.buybox-anchor-price {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 13px;
-  color: #94A3B8;
-  text-decoration: line-through;
-  letter-spacing: 1px;
-}
-.buybox-main-price {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin: 6px 0;
-}
-.buybox-currency {
-  font-family: 'Syncopate', sans-serif;
-  font-size: 20px;
-  color: var(--accent-gold);
-  font-weight: 700;
-}
-.buybox-value {
-  font-family: 'Syncopate', sans-serif;
-  font-size: clamp(2.4rem, 5vw, 3.2rem);
-  font-weight: 800;
-  color: #FFFFFF;
-  letter-spacing: -1px;
-  line-height: 1;
-}
-.buybox-discount-badge {
-  background: #10B981;
-  color: #020205;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px;
-  font-weight: 900;
-  padding: 4px 10px;
-  border-radius: 3px;
-  letter-spacing: 1px;
-}
-.buybox-installments {
-  font-size: 13px;
-  color: #CBD5E1;
-}
-
-.buybox-value-stack {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 20px 0;
-}
-.buybox-stack-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 12px;
-  font-size: 14px;
-  color: #F1F5F9;
-  line-height: 1.4;
-}
-.buybox-stack-item:last-child {
-  margin-bottom: 0;
-}
-.buybox-check {
-  color: var(--accent-gold);
-  font-size: 16px;
-  line-height: 1.2;
-  flex-shrink: 0;
-}
-.buybox-stack-item strong {
-  color: #FFF;
-}
-.buybox-val-tag {
-  color: var(--accent-gold-light);
-  font-family: monospace;
-  font-size: 12px;
-  margin-left: 6px;
-}
-
-.buybox-cta-btn {
-  width: 100%;
-  background: linear-gradient(135deg, #FFE494 0%, #C5A059 50%, #9C792E 100%);
-  color: #020205;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px;
-  font-weight: 900;
-  letter-spacing: 1.8px;
-  padding: 18px 24px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0 0 25px rgba(197, 160, 89, 0.45);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-.buybox-cta-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 40px rgba(197, 160, 89, 0.7);
-  background: linear-gradient(135deg, #FFF0B8 0%, #D4AF37 50%, #B8860B 100%);
-}
-
-.buybox-trust-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 11px;
-  color: #94A3B8;
-}
-.buybox-trust-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+@media (max-width: 768px) {
+  .acervo-book-row {
+    gap: 16px;
+    padding: 14px;
+  }
+  .acervo-book-thumb-wrap {
+    width: 70px;
+    height: 96px;
+  }
+  .acervo-book-thumb {
+    max-height: 96px;
+  }
+  .acervo-book-title {
+    font-size: 15px;
+  }
+  .acervo-book-price-line {
+    font-size: 12px;
+  }
+  .offer-buybox-card {
+    padding: 24px 20px;
+  }
 }
