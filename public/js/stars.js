@@ -10,7 +10,7 @@
   let stars = [];
   let shootingStars = [];
 
-  const SHOOTING_COLORS = ['#00f2ff', '#7000ff', '#e5c77a'];
+  const SHOOTING_COLORS = ['#e5c77a', '#c5a059', '#ffffff', '#d4d4d8'];
 
   function resize() {
     width = canvas.width = window.innerWidth;

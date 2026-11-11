@@ -1,13 +1,14 @@
 /* ==========================================================================
-   UNIVERSO Q51 — FUNIL DE VENDAS & CONTROLE DE CARRINHO (V2.2 AUDITORIA)
-   Implementação exata conforme Auditoria Técnica de Vendas (02/11/2026)
+   UNIVERSO Q51 — FUNIL DE VENDAS & CONTROLE DO PASSE FUNDADOR (V3.0 AUDITORIA)
+   Execução de Alta Fidelidade conforme Auditoria EIDON (11/11/2026)
+   Sem simulações falsas: Reservas reais via /api/register e Compra via Canal Oficial
    ========================================================================== */
 
 (() => {
   const $ = selector => document.querySelector(selector);
   const $$ = selector => document.querySelectorAll(selector);
 
-  // --- 1. SÍNTESE DE ÁUDIO BINAURAL (FRAGMENTO 01) ---
+  // --- 1. SÍNTESE DE ÁUDIO BINAURAL (FRAGMENTO 01 · 432 Hz) ---
   let audioCtx = null;
   let isPlaying = false;
   let audioTimerInterval = null;
@@ -30,15 +31,17 @@
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(140, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(36, ctx.currentTime + 0.5);
-      gain.gain.setValueAtTime(0.5, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+      osc.frequency.setValueAtTime(160, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.45);
+      gain.gain.setValueAtTime(0.4, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start();
-      osc.stop(ctx.currentTime + 0.6);
-    } catch (e) { console.debug(e); }
+      osc.stop(ctx.currentTime + 0.5);
+    } catch (e) {
+      console.debug(e);
+    }
   }
 
   function startFragmentAudio() {
@@ -47,14 +50,14 @@
     stopFragmentAudio();
     isPlaying = true;
 
-    // Frequência de 432 Hz e harmônicos meditativos
+    // Frequência harmônica áurea (432 Hz, 216 Hz e 648 Hz)
     [432, 216, 648].forEach((freq, idx) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = idx === 0 ? 'sine' : 'triangle';
       osc.frequency.setValueAtTime(freq, ctx.currentTime);
 
-      const baseGain = idx === 0 ? 0.25 : 0.08;
+      const baseGain = idx === 0 ? 0.22 : 0.07;
       gain.gain.setValueAtTime(0.001, ctx.currentTime);
       gain.gain.linearRampToValueAtTime(baseGain, ctx.currentTime + 1.2);
 
@@ -66,7 +69,7 @@
 
     const btn = $('#btn-play-audio');
     const timer = $('#audio-time-display');
-    if (btn) btn.textContent = 'Pausar áudio';
+    if (btn) btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> <span>Pausar áudio</span>';
 
     audioTimerInterval = setInterval(() => {
       if (audioSecondsLeft > 0) {
@@ -96,26 +99,10 @@
     });
     synthNodes = [];
     const btn = $('#btn-play-audio');
-    if (btn) btn.textContent = 'Ouvir fragmento';
+    if (btn) btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"/></svg> <span>Ouvir fragmento</span>';
   }
 
-  // --- 2. PARTÍCULAS ORBITAIS EM TORNO DA CHAVE ---
-  const host = $('#ritual-particles-host');
-  if (host) {
-    for (let i = 0; i < 12; i++) {
-      const p = document.createElement('div');
-      p.className = 'orbital-particle';
-      const size = 2 + Math.random() * 3;
-      p.style.width = size + 'px';
-      p.style.height = size + 'px';
-      p.style.setProperty('--orbit-radius', (55 + Math.random() * 25) + 'px');
-      p.style.animation = `orbitalSpin ${3 + Math.random() * 2}s linear infinite`;
-      p.style.animationDelay = `-${i * 0.25}s`;
-      host.appendChild(p);
-    }
-  }
-
-  // --- 3. ATIVAÇÃO DA CHAVE (SUBSTITUIÇÃO DE TEXTO AUDITORIA) ---
+  // --- 2. ATIVAÇÃO DA CHAVE DO MARCO FUNDADOR ---
   const keyBtn = $('#ritual-activate-key');
   const stageInitial = $('#stage-initial-key');
   const stageReward = $('#stage-reward-unlocked');
@@ -123,17 +110,24 @@
   if (keyBtn) {
     keyBtn.addEventListener('click', () => {
       playKeyClickSound();
-      if (navigator.vibrate) navigator.vibrate([40, 80]);
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        try { navigator.vibrate([40, 60]); } catch (e) {}
+      }
 
       if (stageInitial && stageReward) {
-        stageInitial.style.display = 'none';
-        stageReward.hidden = false;
-        stageReward.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        stageInitial.style.opacity = '0';
+        stageInitial.style.transform = 'scale(0.96)';
+        stageInitial.style.transition = 'all 0.3s ease';
+
+        setTimeout(() => {
+          stageInitial.style.display = 'none';
+          stageReward.hidden = false;
+          stageReward.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
       }
     });
   }
 
-  // Controle de reprodução do fragmento
   const audioPlayBtn = $('#btn-play-audio');
   if (audioPlayBtn) {
     audioPlayBtn.addEventListener('click', () => {
@@ -145,7 +139,7 @@
     });
   }
 
-  // --- 4. MODAL DO CARTÃO DOURADO (ACESSIBILIDADE TAB / ENTER / ESCAPE) ---
+  // --- 3. MODAL DOS PRIVILÉGIOS DO CARTÃO DOURADO ---
   const goldenCardContainer = $('#golden-card-trigger');
   const openPrivilegesBtn = $('#btn-open-privileges');
   const prizesDialog = $('#golden-prizes-dialog');
@@ -153,9 +147,7 @@
   const dialogAddPassBtn = $('#btn-dialog-add-pass');
 
   function openPrizesModal() {
-    if (prizesDialog) {
-      prizesDialog.showModal();
-    }
+    if (prizesDialog) prizesDialog.showModal();
   }
 
   function closePrizesModal() {
@@ -167,7 +159,7 @@
 
   if (goldenCardContainer) {
     goldenCardContainer.addEventListener('click', openPrizesModal);
-    goldenCardContainer.addEventListener('keydown', (e) => {
+    goldenCardContainer.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         openPrizesModal();
@@ -179,17 +171,16 @@
   if (closePrizesBtn) closePrizesBtn.addEventListener('click', closePrizesModal);
 
   if (prizesDialog) {
-    prizesDialog.addEventListener('keydown', (e) => {
+    prizesDialog.addEventListener('keydown', e => {
       if (e.key === 'Escape') closePrizesModal();
     });
   }
 
-  // --- 5. GESTÃO DE ESTADO DO CARRINHO (P1 AUDITORIA: INICIA VAZIO) ---
+  // --- 4. GESTÃO DO CARRINHO (CHECKOUT REAL E LIMPO) ---
   const CART_STORAGE_KEY = 'u51_founder_cart';
   let cart = {
     hasItem: false,
-    delivery: 'pickup',
-    paymentMethod: 'pix' // 'pix' ou 'card'
+    delivery: 'pickup', // 'pickup' ou 'shipping'
   };
 
   try {
@@ -215,26 +206,19 @@
   const cartBody = $('#cart-drawer-content');
 
   function updateCartUI() {
-    // Atualiza badges no cabeçalho
     if (cartPillCount) {
-      if (cart.hasItem) {
-        cartPillCount.textContent = '1';
-        cartPillCount.dataset.count = '1';
-      } else {
-        cartPillCount.textContent = '0';
-        cartPillCount.dataset.count = '0';
-      }
+      cartPillCount.textContent = cart.hasItem ? '1' : '0';
+      cartPillCount.dataset.count = cart.hasItem ? '1' : '0';
     }
 
-    // Renderiza o corpo da gaveta
     if (!cartBody) return;
 
     if (!cart.hasItem) {
       cartBody.innerHTML = `
         <div class="cart-empty-state">
-          <p>Seu carrinho está vazio.</p>
+          <p style="color: var(--color-text-sub); margin-bottom: 20px;">Seu carrinho está vazio.</p>
           <button class="btn-dialog-add-pass" id="btn-add-from-empty">
-            Adicionar Passe Fundador · R$ 110,00
+            Garantir Passe Fundador · R$ 110,00
           </button>
         </div>
       `;
@@ -244,117 +228,106 @@
       return;
     }
 
-    // Carrinho com item presente
-    const isCard = cart.paymentMethod === 'card';
-    const subtotalText = 'R$ 110,00';
-    const totalText = isCard ? '3 × R$ 39,90 (total R$ 119,70)' : 'R$ 110,00';
     const isShipping = cart.delivery === 'shipping';
+    const deliverySummary = isShipping ? 'Envio pelos Correios (sob consulta)' : 'Retirada gratuita no Marco Fundador (21/11)';
+    const waText = encodeURIComponent(
+      `Olá! Tenho interesse em garantir meu Passe Fundador do Universo Q51 (R$ 110,00).\nEntrega: ${deliverySummary}.\nPor favor, me envie as instruções oficiais de pagamento.`
+    );
 
     cartBody.innerHTML = `
       <div class="cart-item-row">
         <div class="cart-item-details">
           <div class="cart-item-title">Passe Fundador Q51</div>
-          <div class="cart-item-desc">2 Livros físicos + Acervo digital + 2 Chances Douradas</div>
-          <div style="margin-top: 4px; font-weight: 600; font-size: 13px;" class="price-tag-pass">
-            ${isCard ? '3 × R$ 39,90 no cartão' : 'R$ 110,00 no Pix'}
+          <div class="cart-item-desc">2 Livros Físicos + Acervo Digital + 2 Chances Douradas</div>
+          <div style="margin-top: 6px; font-weight: 700; font-size: 14px;" class="price-tag-pass">
+            R$ 110,00 <span style="font-size: 11.5px; font-weight: normal; color: var(--color-text-sub);">(ou até 3× de R$ 39,90)</span>
           </div>
         </div>
         <div class="cart-item-qty-wrap">
-          <span style="font-size: 13px; font-weight: 600;">1x</span>
-          <button class="btn-cart-remove" id="btn-cart-remove" aria-label="Remover item">Remover</button>
+          <button class="btn-cart-remove" id="btn-cart-remove" aria-label="Remover item do carrinho">Remover</button>
         </div>
       </div>
 
       <div class="cart-delivery-box">
-        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text-sub); margin-bottom: 8px;">
-          Opção de Entrega
-        </div>
+        <div class="cart-section-title">Modo de Recebimento</div>
         <label class="cart-radio-option">
           <input type="radio" name="cart_delivery" value="pickup" ${!isShipping ? 'checked' : ''}>
           <div>
             <strong>Retirada no Marco Fundador (21/11)</strong>
-            <small style="display: block; color: var(--color-text-sub);">Livraria Leitura, Shopping Del Rey, BH — Frete gratuito</small>
+            <small>Livraria Leitura, Shopping Del Rey (2º Andar), BH — Gratuito</small>
           </div>
         </label>
         <label class="cart-radio-option">
           <input type="radio" name="cart_delivery" value="shipping" ${isShipping ? 'checked' : ''}>
           <div>
-            <strong>Envio Nacional pelos Correios</strong>
-            <small style="display: block; color: var(--color-text-sub);">Envio pós-evento com frete sob consulta</small>
+            <strong>Envio Nacional via Correios</strong>
+            <small>Disponível pós-evento para todo o Brasil (frete sob consulta)</small>
           </div>
         </label>
-      </div>
-
-      <div class="payment-tabs-clean">
-        <button class="btn-pay-tab ${!isCard ? 'active' : ''}" id="btn-tab-pix">Pix (R$ 110,00)</button>
-        <button class="btn-pay-tab ${isCard ? 'active' : ''}" id="btn-tab-card">Cartão (Até 3x)</button>
       </div>
 
       <div class="cart-totals-box">
         <div class="cart-totals-row">
           <span>Subtotal:</span>
-          <span>${subtotalText}</span>
+          <span>R$ 110,00</span>
         </div>
         <div class="cart-totals-row">
           <span>Entrega:</span>
-          <span>${isShipping ? 'Sob consulta pós-evento' : 'Gratuita (Retirada)'}</span>
+          <span>${isShipping ? 'Sob consulta pós-evento' : 'Gratuita (Retirada 21/11)'}</span>
         </div>
         <div class="cart-totals-row cart-total-final">
-          <span>Total:</span>
-          <span class="price-tag-pass">${totalText}</span>
+          <span>Total à vista:</span>
+          <span class="price-tag-pass">R$ 110,00</span>
         </div>
       </div>
 
-      <div id="payment-pane-area">
-        ${!isCard ? `
-          <div style="text-align: center;">
-            <div class="pix-qr-clean">
-              <svg width="150" height="150" viewBox="0 0 100 100" fill="#000">
-                <rect width="100" height="100" fill="#FFF"/>
-                <rect x="10" y="10" width="24" height="24" fill="#000"/>
-                <rect x="14" y="14" width="16" height="16" fill="#FFF"/>
-                <rect x="18" y="18" width="8" height="8" fill="#000"/>
-                <rect x="66" y="10" width="24" height="24" fill="#000"/>
-                <rect x="70" y="14" width="16" height="16" fill="#FFF"/>
-                <rect x="74" y="18" width="8" height="8" fill="#000"/>
-                <rect x="10" y="66" width="24" height="24" fill="#000"/>
-                <rect x="14" y="70" width="16" height="16" fill="#FFF"/>
-                <rect x="18" y="74" width="8" height="8" fill="#000"/>
-                <rect x="42" y="15" width="6" height="6" fill="#000"/>
-                <rect x="52" y="20" width="6" height="6" fill="#000"/>
-                <rect x="40" y="38" width="20" height="6" fill="#000"/>
-                <rect x="45" y="48" width="10" height="10" fill="#000"/>
-                <rect x="25" y="45" width="6" height="15" fill="#000"/>
-                <rect x="65" y="45" width="25" height="6" fill="#000"/>
-                <rect x="42" y="68" width="6" height="22" fill="#000"/>
-                <rect x="75" y="75" width="15" height="15" fill="#000"/>
-              </svg>
-            </div>
-            <div class="pix-code-clean">
-              <input type="text" id="pix-copy-input" value="00020126580014br.gov.bcb.pix0136q51-marco-fundador-2026@universoq51.com.br5204000053039865406110.005802BR5925NOAH ARCO UNIVERSO Q516009BELO HORIZONTE62070503***63041010" readonly style="width: 100%; background: transparent; border: none; color: #B4B4AE; font-size: 11px;">
-            </div>
-            <button class="btn-copy-pix" id="btn-copy-pix">Copiar código Pix Copia e Cola</button>
-            <button class="btn-finalize-pay" id="btn-check-pix">Consultar status do pagamento</button>
-          </div>
-        ` : `
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            <input type="text" placeholder="Número do cartão de crédito" class="form-input-app" style="background: #0A0A0A; border-color: var(--color-border-subtle); color: #FFF;">
-            <div style="display: flex; gap: 8px;">
-              <input type="text" placeholder="MM/AA" class="form-input-app" style="flex: 1; background: #0A0A0A; border-color: var(--color-border-subtle); color: #FFF;">
-              <input type="text" placeholder="CVV" class="form-input-app" style="flex: 1; background: #0A0A0A; border-color: var(--color-border-subtle); color: #FFF;">
-            </div>
-            <select class="form-input-app" id="card-installments-select" style="background: #0A0A0A; border-color: var(--color-border-subtle); color: #FFF;">
-              <option value="1">1 × R$ 110,00 sem juros</option>
-              <option value="3" selected>3 × R$ 39,90 (total R$ 119,70)</option>
-            </select>
-            <button class="btn-finalize-pay" id="btn-pay-card-submit">Pagar com cartão · total R$ 119,70</button>
-          </div>
-        `}
-      </div>
+      <div class="checkout-actions-block">
+        <!-- Opção 1: Compra direta com a Agência / Pix ou Cartão -->
+        <a 
+          href="https://wa.me/5531983040444?text=${waText}" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-checkout-primary-wa"
+          id="btn-whatsapp-checkout"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+          <span>Pagar Online via WhatsApp Oficial ↗</span>
+        </a>
 
-      <button class="btn-reserve-bookstore" id="btn-reserve-bookstore">
-        Reservar para pagar na livraria (21/11)
-      </button>
+        <!-- Opção 2: Reserva Oficial para pagar na Livraria -->
+        <button type="button" class="btn-checkout-reserve" id="btn-toggle-quick-reserve">
+          Reservar para pagar na Livraria Leitura (21/11) ↓
+        </button>
+
+        <!-- Formulário de Reserva Oficial Embutido (Persistência real no SQLite) -->
+        <div id="drawer-quick-reserve-box" class="quick-reserve-form-drawer" hidden>
+          <h4>Reserva Oficial do Marco Fundador</h4>
+          <p>Garante seu exemplar físico nos caixas da Livraria Leitura Del Rey no dia 21/11.</p>
+          <form id="drawer-reserve-form" data-kind="founder">
+            <input type="hidden" name="priority" value="on">
+            <div class="form-group-mini">
+              <input type="text" name="name" class="form-input-mini" placeholder="Seu Nome Completo *" required maxlength="100">
+            </div>
+            <div class="form-group-mini">
+              <input type="email" name="email" class="form-input-mini" placeholder="Seu E-mail *" required maxlength="180">
+            </div>
+            <div class="form-group-mini">
+              <input type="tel" name="phone" class="form-input-mini" placeholder="WhatsApp com DDD *" required maxlength="30">
+            </div>
+            <div class="form-group-mini">
+              <input type="text" name="instagram" class="form-input-mini" placeholder="Instagram (@seuusuario)" required maxlength="30">
+            </div>
+            <label class="consent" style="margin: 8px 0; font-size: 10px;">
+              <input name="consent" required type="checkbox">
+              <span>Autorizo o uso dos dados para esta reserva oficial.</span>
+            </label>
+            <button type="submit" class="btn-submit-quick-reserve" id="btn-submit-drawer-reserve">
+              Confirmar Reserva do Passe Fundador
+            </button>
+            <p class="form-status" style="font-size: 11px; margin-top: 8px;" role="status"></p>
+          </form>
+        </div>
+      </div>
     `;
 
     // Listeners do Carrinho
@@ -365,78 +338,82 @@
     });
 
     $$('input[name="cart_delivery"]').forEach(radio => {
-      radio.addEventListener('change', (e) => {
+      radio.addEventListener('change', e => {
         cart.delivery = e.target.value;
         saveCart();
         updateCartUI();
       });
     });
 
-    $('#btn-tab-pix')?.addEventListener('click', () => {
-      cart.paymentMethod = 'pix';
-      saveCart();
-      updateCartUI();
-    });
+    // Toggle da Reserva no Carrinho
+    const toggleReserveBtn = $('#btn-toggle-quick-reserve');
+    const reserveBox = $('#drawer-quick-reserve-box');
+    if (toggleReserveBtn && reserveBox) {
+      toggleReserveBtn.addEventListener('click', () => {
+        const isHidden = reserveBox.hidden;
+        reserveBox.hidden = !isHidden;
+        toggleReserveBtn.textContent = isHidden
+          ? 'Fechar formulário de reserva ↑'
+          : 'Reservar para pagar na Livraria Leitura (21/11) ↓';
+      });
+    }
 
-    $('#btn-tab-card')?.addEventListener('click', () => {
-      cart.paymentMethod = 'card';
-      saveCart();
-      updateCartUI();
-    });
+    // Submissão da Reserva Rápida (Dispara o fluxo real de /api/register)
+    const reserveForm = $('#drawer-reserve-form');
+    if (reserveForm) {
+      reserveForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const status = reserveForm.querySelector('.form-status');
+        const submitBtn = $('#btn-submit-drawer-reserve');
 
-    // Copiar código Pix válido (com CRC 1010)
-    $('#btn-copy-pix')?.addEventListener('click', () => {
-      const input = $('#pix-copy-input');
-      if (input) {
-        navigator.clipboard.writeText(input.value).then(() => {
-          const btn = $('#btn-copy-pix');
-          if (btn) {
-            btn.textContent = 'Código Pix copiado com sucesso';
-            btn.style.borderColor = 'var(--color-price-pass)';
-            btn.style.color = 'var(--color-price-pass)';
-            setTimeout(() => {
-              btn.textContent = 'Copiar código Pix Copia e Cola';
-              btn.style.borderColor = '';
-              btn.style.color = '';
-            }, 3000);
+        if (!reserveForm.reportValidity()) return;
+
+        const formData = new FormData(reserveForm);
+        const data = {
+          kind: 'founder',
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          instagram: formData.get('instagram'),
+          priority: true,
+          consent: formData.get('consent') === 'on',
+        };
+
+        submitBtn.disabled = true;
+        status.textContent = 'Gravando sua reserva oficial no Marco Fundador…';
+
+        try {
+          const res = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Idempotency-Key': crypto.randomUUID ? crypto.randomUUID() : 'idemp-' + Date.now(),
+            },
+            body: JSON.stringify(data),
+          });
+
+          const r = await res.json();
+          if (!res.ok) throw new Error(r.error || 'Falha ao registrar reserva.');
+
+          status.textContent = 'Reserva confirmada com sucesso!';
+          closeCartDrawer();
+
+          // Abre a credencial oficial gerada e salva
+          const credModal = $('#credential-dialog');
+          if (credModal) {
+            $('#credential-name').textContent = r.name || data.name;
+            $('#credential-id').textContent = r.credential || '#U51-FND';
+            $('#priority-status').textContent =
+              'Reserva com prioridade do Passe Fundador registrada nos caixas da Leitura Del Rey.';
+            credModal.showModal();
           }
-        });
-      }
-    });
-
-    // Consultar status Pix
-    $('#btn-check-pix')?.addEventListener('click', () => {
-      const btn = $('#btn-check-pix');
-      if (btn) {
-        btn.textContent = 'Consultando status…';
-        btn.disabled = true;
-        setTimeout(() => {
-          btn.textContent = 'Pagamento confirmado';
-          closeCartDrawer();
-          emitFounderCredential('Passe confirmado · Pix');
-        }, 1200);
-      }
-    });
-
-    // Pagar com cartão
-    $('#btn-pay-card-submit')?.addEventListener('click', () => {
-      const btn = $('#btn-pay-card-submit');
-      if (btn) {
-        btn.textContent = 'Processando cartão…';
-        btn.disabled = true;
-        setTimeout(() => {
-          btn.textContent = 'Pagamento aprovado';
-          closeCartDrawer();
-          emitFounderCredential('Passe confirmado · Cartão');
-        }, 1200);
-      }
-    });
-
-    // Reservar na livraria
-    $('#btn-reserve-bookstore')?.addEventListener('click', () => {
-      closeCartDrawer();
-      emitFounderCredential('Reserva confirmada para pagamento no caixa da Leitura Del Rey');
-    });
+        } catch (err) {
+          status.textContent = err.message || 'Erro ao registrar reserva. Tente novamente.';
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    }
   }
 
   function addItemToCart() {
@@ -463,27 +440,16 @@
     }
   }
 
-  function emitFounderCredential(statusNote) {
-    const credModal = $('#credential-dialog');
-    if (credModal) {
-      const cId = $('#credential-id');
-      const cStatus = $('#priority-status');
-      if (cId) cId.textContent = '#U51-FND-' + Math.floor(1000 + Math.random() * 9000);
-      if (cStatus) cStatus.textContent = statusNote;
-      credModal.showModal();
-    }
-  }
-
   // Triggers globais para abrir carrinho / adicionar passe
   $$('.open-cart-trigger').forEach(el => {
-    el.addEventListener('click', (e) => {
+    el.addEventListener('click', e => {
       e.preventDefault();
       openCartDrawer();
     });
   });
 
   $$('.trigger-add-pass').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', e => {
       e.preventDefault();
       addItemToCart();
     });
@@ -502,24 +468,23 @@
   // Inicializa UI do carrinho
   updateCartUI();
 
-  // --- 6. 3D TILT EFFECT NO CARTÃO DOURADO ---
+  // --- 5. 3D TILT EFFECT NO CARTÃO DOURADO ---
   if (goldenCardContainer) {
     const wrap = goldenCardContainer.querySelector('.golden-card-wrapper');
     if (wrap) {
-      goldenCardContainer.addEventListener('mousemove', (e) => {
+      goldenCardContainer.addEventListener('mousemove', e => {
         const rect = goldenCardContainer.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const cx = rect.width / 2;
         const cy = rect.height / 2;
         const rx = (cy - y) / 14;
-        const ry = (x - cx) / 18;
-        wrap.style.transform = `scale(1.03) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        const ry = (x - cx) / 16;
+        wrap.style.transform = `scale(1.025) rotateX(${rx}deg) rotateY(${ry}deg)`;
       });
       goldenCardContainer.addEventListener('mouseleave', () => {
         wrap.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
       });
     }
   }
-
 })();
