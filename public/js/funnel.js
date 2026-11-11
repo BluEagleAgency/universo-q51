@@ -8,108 +8,13 @@
   const $ = selector => document.querySelector(selector);
   const $$ = selector => document.querySelectorAll(selector);
 
-  // --- 1. SÍNTESE DE ÁUDIO BINAURAL (FRAGMENTO 01 · 432 Hz) ---
-  let audioCtx = null;
-  let isPlaying = false;
-  let audioTimerInterval = null;
-  let audioSecondsLeft = 84; // 01:24
-  let synthNodes = [];
-
-  function getAudioContext() {
-    if (!audioCtx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (AudioContext) audioCtx = new AudioContext();
-    }
-    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-    return audioCtx;
-  }
-
-  function playKeyClickSound() {
-    const ctx = getAudioContext();
-    if (!ctx) return;
-    try {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(160, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.45);
-      gain.gain.setValueAtTime(0.4, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.5);
-    } catch (e) {
-      console.debug(e);
-    }
-  }
-
-  function startFragmentAudio() {
-    const ctx = getAudioContext();
-    if (!ctx) return;
-    stopFragmentAudio();
-    isPlaying = true;
-
-    // Frequência harmônica áurea (432 Hz, 216 Hz e 648 Hz)
-    [432, 216, 648].forEach((freq, idx) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = idx === 0 ? 'sine' : 'triangle';
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-
-      const baseGain = idx === 0 ? 0.22 : 0.07;
-      gain.gain.setValueAtTime(0.001, ctx.currentTime);
-      gain.gain.linearRampToValueAtTime(baseGain, ctx.currentTime + 1.2);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      synthNodes.push({ osc, gain });
-    });
-
-    const btn = $('#btn-play-audio');
-    const timer = $('#audio-time-display');
-    if (btn) btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> <span>Pausar áudio</span>';
-
-    audioTimerInterval = setInterval(() => {
-      if (audioSecondsLeft > 0) {
-        audioSecondsLeft--;
-        const m = Math.floor(audioSecondsLeft / 60);
-        const s = audioSecondsLeft % 60;
-        if (timer) timer.textContent = `Duração restante: ${m}:${String(s).padStart(2, '0')}`;
-      } else {
-        stopFragmentAudio();
-      }
-    }, 1000);
-  }
-
-  function stopFragmentAudio() {
-    isPlaying = false;
-    if (audioTimerInterval) {
-      clearInterval(audioTimerInterval);
-      audioTimerInterval = null;
-    }
-    synthNodes.forEach(({ osc, gain }) => {
-      try {
-        if (audioCtx) {
-          gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
-          osc.stop(audioCtx.currentTime + 0.35);
-        }
-      } catch (e) {}
-    });
-    synthNodes = [];
-    const btn = $('#btn-play-audio');
-    if (btn) btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"/></svg> <span>Ouvir fragmento</span>';
-  }
-
-  // --- 2. ATIVAÇÃO DA CHAVE DO MARCO FUNDADOR ---
+  // --- 1. ATIVAÇÃO DA CHAVE DO MARCO FUNDADOR (SILENCIOSA PARA SUBSTITUIÇÃO DE ÁUDIO) ---
   const keyBtn = $('#ritual-activate-key');
   const stageInitial = $('#stage-initial-key');
   const stageReward = $('#stage-reward-unlocked');
 
   if (keyBtn) {
     keyBtn.addEventListener('click', () => {
-      playKeyClickSound();
       if (typeof navigator !== 'undefined' && navigator.vibrate) {
         try { navigator.vibrate([40, 60]); } catch (e) {}
       }
@@ -124,17 +29,6 @@
           stageReward.hidden = false;
           stageReward.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 300);
-      }
-    });
-  }
-
-  const audioPlayBtn = $('#btn-play-audio');
-  if (audioPlayBtn) {
-    audioPlayBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        stopFragmentAudio();
-      } else {
-        startFragmentAudio();
       }
     });
   }
